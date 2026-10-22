@@ -2,157 +2,563 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acceso QR | Alcalde Digital ROI</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Alcalde Digital ROI | Gobernanza Inteligente</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
     :root {
         --primary: #00b065;
-        --primary-glow: rgba(0, 176, 101, 0.4);
+        --primary-glow: rgba(0, 176, 101, 0.35);
         --bg-light: #fdfbf7;
+        --bg-alt: #f4f0e8;
+        --surface: #ffffff;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-strong: rgba(0, 0, 0, 0.14);
         --text-dark: #0f172a;
-        --text-muted: #475569;
-        --border: rgba(0, 0, 0, 0.12);
+        --text-muted: #64748b;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; width: 100%; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-light); color: var(--text-dark); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
 
-    body {
-        background: linear-gradient(180deg, rgba(253, 251, 247, 0.85) 0%, rgba(244, 240, 232, 0.95) 100%),
-                    url('ciudad.png') center/cover no-repeat fixed;
-        color: var(--text-dark);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 40px 20px;
-        text-align: center;
+    /* CABECERA RESPONSIVE */
+    .header-sticky-wrapper {
+        position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.95);
+        backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 10px 16px;
     }
+    .header { display: flex; flex-direction: column; gap: 10px; max-width: 1280px; margin: 0 auto; }
+    .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    
+    .brand-badge { background: #ffffff; padding: 6px 14px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); flex-shrink: 0; }
+    .logo { font-size: 13.5px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
+    .logo span { color: var(--text-dark); }
+    .online { font-size: 10px; color: var(--text-muted); font-weight: 600; }
 
-    .brand-container {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: #ffffff;
-        padding: 10px 24px;
-        border-radius: 30px;
-        border: 1px solid var(--border);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        margin-bottom: 24px;
+    /* BOTÓN PEDIR DEMO */
+    .btn-cta-header {
+        background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important; font-weight: 800; padding: 8px 16px; border-radius: 10px;
+        text-decoration: none; font-size: 12px; box-shadow: 0 4px 14px var(--primary-glow); white-space: nowrap; transition: all 0.2s;
+        animation: pulseDemoGlow 2.2s infinite ease-in-out; flex-shrink: 0;
     }
-    .brand-logo { font-size: 16px; font-weight: 900; letter-spacing: 1px; color: var(--primary); }
-    .brand-logo span { color: var(--text-dark); }
-    .brand-badge { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .main-card {
-        max-width: 800px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
+    @keyframes pulseDemoGlow {
+        0%, 100% { box-shadow: 0 0 8px rgba(0, 176, 101, 0.4); transform: scale(1); }
+        50% { box-shadow: 0 0 18px rgba(0, 176, 101, 0.85); transform: scale(1.025); }
     }
 
-    .main-slogan {
-        font-size: clamp(36px, 6vw, 62px);
-        font-weight: 900;
-        line-height: 1.1;
-        letter-spacing: -1.5px;
-        color: var(--text-dark);
-        text-shadow: 0 4px 20px rgba(255,255,255,0.9);
+    /* BLOQUE NAVEGACIÓN */
+    .nav-bloques { 
+        display: flex; gap: 6px; width: 100%; overflow-x: auto; padding: 2px 0; 
+        -webkit-overflow-scrolling: touch;
     }
-    .main-slogan span {
-        color: var(--primary);
-        display: inline-block;
-        background: linear-gradient(135deg, #00b065, #008a4f);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .nav-bloques::-webkit-scrollbar { display: none; }
+    .nav-btn {
+        flex: 1; text-align: center; color: var(--text-muted); text-decoration: none; padding: 7px 12px; border-radius: 18px; font-size: 11px; font-weight: 700;
+        background: #ffffff; border: 1px solid var(--border); white-space: nowrap; flex-shrink: 0; transition: all 0.2s;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .nav-btn.active, .nav-btn:hover { background: var(--primary); color: #ffffff !important; border-color: var(--primary); font-weight: 800; }
+
+    /* HERO SECTION */
+    .hero-container {
+        position: relative; padding: 32px 16px 44px; display: flex; flex-direction: column; gap: 28px;
+        background: linear-gradient(180deg, rgba(253, 251, 247, 0.88) 0%, rgba(253, 251, 247, 0.98) 100%),
+                    url('ciudad.png') center/cover no-repeat;
     }
 
-    .sub-slogan {
-        font-size: clamp(16px, 2.5vw, 22px);
-        font-weight: 700;
-        color: var(--text-muted);
-        max-width: 620px;
-        line-height: 1.4;
+    .hero-text-side { width: 100%; }
+    .tag-participacion {
+        display: inline-block; background: rgba(0, 176, 101, 0.1); color: var(--primary);
+        border: 1px solid rgba(0, 176, 101, 0.3); padding: 5px 14px; border-radius: 20px;
+        font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
     }
 
-    .qr-frame-wrapper {
-        position: relative;
-        background: #ffffff;
-        padding: 24px;
-        border-radius: 32px;
-        border: 2px solid var(--primary);
-        box-shadow: 0 25px 60px rgba(0, 176, 101, 0.25), 0 10px 25px rgba(0,0,0,0.08);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        transition: transform 0.3s ease;
-        margin: 10px 0;
+    .hero h1 { 
+        font-size: 30px; font-weight: 900; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-dark);
+        animation: slideDownAura 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .qr-frame-wrapper:hover {
-        transform: scale(1.02);
+    .hero h1 span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
+    @keyframes slideDownAura {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
 
-    .qr-code-img {
-        width: clamp(240px, 45vw, 380px);
-        height: clamp(240px, 45vw, 380px);
-        object-fit: contain;
-        border-radius: 12px;
+    .subtitle-info { font-size: 15px; color: #334155; font-weight: 700; margin-bottom: 10px; }
+    .core-description { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+
+    .pillars-row { display: flex; gap: 8px; margin-bottom: 10px; width: 100%; }
+    .pillar-pill {
+        flex: 1; text-align: center; justify-content: center;
+        background: #ffffff; border: 1px solid var(--border-strong); padding: 8px 10px; border-radius: 12px;
+        font-size: 11px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03); white-space: nowrap;
     }
 
-    .qr-url-badge {
-        background: var(--bg-light);
-        border: 1px solid var(--border);
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-size: 15px;
-        font-weight: 900;
-        color: var(--primary);
-        letter-spacing: 0.5px;
+    /* CHAT WHATSAPP */
+    .avatar-chat-container {
+        background: #ffffff; border: 1px solid var(--border-strong);
+        border-radius: 22px; padding: 16px; box-shadow: 0 18px 38px rgba(0,0,0,0.05);
+        display: flex; flex-direction: column; gap: 12px; width: 100%;
+    }
+    .avatar-header-large { display: flex; align-items: center; gap: 12px; }
+    .chat-avatar-xl {
+        width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--primary);
+        box-shadow: 0 0 12px var(--primary-glow); overflow: hidden; flex-shrink: 0;
+    }
+    .chat-avatar-xl video { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-status-title { font-size: 15px; font-weight: 900; color: var(--text-dark); }
+    .avatar-status-sub { font-size: 11px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    .status-dot { width: 7px; height: 7px; background: var(--primary); border-radius: 50%; }
+
+    .whatsapp-box {
+        background: #f8f6f0; border-radius: 16px; padding: 12px; border: 1px solid var(--border);
+        display: flex; flex-direction: column; gap: 10px;
+    }
+    
+    .chat-messages-scroll {
+        display: flex; flex-direction: column; gap: 8px; overflow-y: auto;
+        height: 220px; max-height: 220px; padding-right: 4px;
+    }
+    .chat-messages-scroll::-webkit-scrollbar { width: 4px; }
+    .chat-messages-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+    .chat-bubble {
+        padding: 9px 13px; border-radius: 13px; font-size: 12px; line-height: 1.4; max-width: 90%;
+        opacity: 0; transform: translateY(8px); animation: fadeInUp 0.3s forwards ease-out;
+    }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    .chat-bubble.bot { background: #ffffff; color: var(--text-dark); font-weight: 600; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .chat-bubble.user { background: var(--primary); color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+    .chat-bubble-cta {
+        background: #ffffff; border: 1px dashed var(--primary); color: var(--primary); padding: 9px;
+        border-radius: 10px; font-size: 11px; font-weight: 800; text-align: center; cursor: pointer; transition: all 0.2s;
     }
 
-    .scan-instruction {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 18px;
-        font-weight: 800;
-        color: var(--text-dark);
-        background: #ffffff;
-        padding: 12px 28px;
-        border-radius: 30px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        animation: pulseInstruction 2s infinite ease-in-out;
+    /* SECCIONES Y BLOQUES */
+    .section-container { padding: 44px 16px; }
+    
+    .bg-city-section-2 {
+        background: linear-gradient(180deg, rgba(244, 240, 232, 0.92) 0%, rgba(244, 240, 232, 0.98) 100%),
+                    url('ciudad2.png') center/cover no-repeat;
+        padding: 44px 16px; border-y: 1px solid var(--border);
     }
-    @keyframes pulseInstruction {
-        0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
-        50% { transform: scale(1.04); box-shadow: 0 12px 28px var(--primary-glow); }
+
+    .section-title { text-align: center; margin-bottom: 24px; }
+    .section-title h2 { font-size: 22px; font-weight: 900; color: var(--text-dark); }
+    .section-title h2 span { color: var(--primary); }
+    .section-title p { color: var(--text-muted); font-size: 12.5px; margin-top: 4px; }
+
+    .voting-widget-box {
+        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 20px; padding: 22px 16px;
+        text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .faces-interactive-row { display: flex; justify-content: space-around; gap: 4px; margin: 16px 0; }
+    .face-vote-btn {
+        font-size: 32px; cursor: pointer; transition: transform 0.2s;
+        filter: grayscale(0.4); display: flex; flex-direction: column; align-items: center;
+    }
+    .face-vote-btn.selected { transform: scale(1.25) translateY(-4px); filter: grayscale(0) drop-shadow(0 4px 10px var(--primary-glow)); }
+    .face-lbl { font-size: 9px; font-weight: 800; color: var(--text-muted); margin-top: 4px; }
+
+    .cycle-container { display: flex; flex-direction: column; gap: 16px; }
+    .cycle-card {
+        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 18px; padding: 22px 18px;
+        position: relative; text-align: left; box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+    }
+    .cycle-badge {
+        position: absolute; top: -11px; left: 18px; background: var(--primary); color: #ffffff;
+        font-weight: 900; font-size: 9px; padding: 3px 10px; border-radius: 12px; text-transform: uppercase;
+    }
+    .cycle-icon { font-size: 28px; margin-bottom: 6px; margin-top: 2px; }
+
+    .expertise-flow-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .expertise-step-box {
+        background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 16px;
+        display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .expertise-step-num {
+        background: rgba(0, 176, 101, 0.1); color: var(--primary); border: 1px solid var(--primary);
+        font-weight: 900; font-size: 12px; width: 30px; height: 30px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .expertise-step-content h4 { font-size: 13.5px; color: var(--text-dark); font-weight: 800; }
+    .expertise-step-content p { font-size: 11.5px; color: var(--text-muted); }
+
+    /* FORMULARIO DE DEMO */
+    .demo-wrapper-grid {
+        display: flex; flex-direction: column; gap: 20px;
+        background: #ffffff; border: 1px solid var(--border-strong);
+        border-radius: 22px; padding: 22px 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    }
+
+    .form-group { margin-bottom: 12px; text-align: left; }
+    .form-group label { display: block; font-size: 10px; font-weight: 900; color: var(--text-dark); text-transform: uppercase; margin-bottom: 4px; }
+    .form-group input, .form-group textarea {
+        width: 100%; background: #fdfbf7; border: 1px solid var(--border-strong); padding: 11px; border-radius: 10px;
+        color: var(--text-dark); font-size: 12.5px; outline: none; font-family: inherit; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #ffffff; }
+
+    .btn-submit-demo-glow {
+        width: 100%; background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important;
+        font-size: 14.5px; font-weight: 900; padding: 15px; border-radius: 12px; border: none; cursor: pointer;
+        box-shadow: 0 6px 20px var(--primary-glow); transition: all 0.2s;
+    }
+
+    .avatar-png-side {
+        width: 100%; height: 260px; position: relative; display: flex;
+        justify-content: center; align-items: center; overflow: hidden; border-radius: 18px;
+        background: radial-gradient(circle, rgba(0, 176, 101, 0.08) 0%, transparent 75%);
+    }
+    .avatar-png-side img {
+        width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
+        transform: scale(1.45);
+        -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%);
+        mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%);
+        filter: drop-shadow(0 8px 18px rgba(0,0,0,0.1));
+    }
+
+    footer { border-top: 1px solid var(--border); padding: 22px 16px; text-align: center; font-size: 11px; color: var(--text-muted); background: #ffffff; }
+
+    /* ESCRITORIO Y PANTALLAS ANCHAS */
+    @media (min-width: 850px) {
+        .header { flex-direction: row; justify-content: space-between; align-items: center; }
+        .header-top-row { width: auto; }
+        .nav-bloques { width: auto; padding: 0; display: flex; align-items: center; gap: 8px; }
+        .nav-btn { flex: none; font-size: 12px; padding: 8px 16px; }
+        
+        /* ALINEACIÓN PERFECTA DE LA DEMO A LA DERECHA EN PC */
+        .btn-cta-header { margin-left: 12px; font-size: 13px; padding: 9px 18px; }
+
+        .hero-container { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 64px 24px; gap: 40px; }
+        
+        /* SLOGAN MÁS GRANDE Y POTENTE EN ESCRITORIO */
+        .hero h1 { font-size: 48px; line-height: 1.15; letter-spacing: -1px; }
+        .hero h1 span { text-shadow: 0 0 25px rgba(0, 176, 101, 0.45); }
+        .subtitle-info { font-size: 17px; }
+        .core-description { font-size: 14.5px; }
+
+        .cycle-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .expertise-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .demo-wrapper-grid { display: grid; grid-template-columns: 320px 1fr; padding: 36px; gap: 32px; }
+        .avatar-png-side { height: 400px; }
+        .avatar-png-side img { transform: scale(1.35); object-position: center 20%; }
     }
 </style>
 </head>
 <body>
 
-    <div class="brand-container">
-        <div class="brand-logo">ALCALDE DIGITAL <span>ROI</span></div>
-        <div class="brand-badge">● Presentación Oficial</div>
+<!-- NAVEGACIÓN PRINCIPAL -->
+<div class="header-sticky-wrapper">
+    <div class="header">
+        <div class="header-top-row">
+            <div class="brand-badge">
+                <div class="logo">ALCALDE DIGITAL <span>ROI</span></div>
+                <div class="online">Gobernanza Inteligente</div>
+            </div>
+        </div>
+
+        <!-- EN PC LAS FASES Y EL BOTÓN DEMO QUEDAN ALINEADOS A LA DERECHA SIN TOCAR EL LOGO -->
+        <nav class="nav-bloques">
+            <a href="#bloque1" id="nav-link-bloque1" class="nav-btn active">1. Plataforma</a>
+            <a href="#bloque2" id="nav-link-bloque2" class="nav-btn">2. Ciclo IA</a>
+            <a href="#bloque3" id="nav-link-bloque3" class="nav-btn">3. Fases</a>
+            <a href="#formularioDemo" class="btn-cta-header">Pedir Demo</a>
+        </nav>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero-container">
+    <div class="hero-text-side">
+        <div class="tag-participacion">PARTICIPACIÓN CIUDADANA</div>
+        <h1>Escuchamos a la ciudadanía.<br><span>Analizamos y actuamos.</span></h1>
+        <p class="subtitle-info">Conoce en tiempo real todo lo que piensan los habitantes.</p>
+        <p class="core-description">Plataforma integral que une la captación física y digital con un motor IA que prioriza e impulsa la participación ciudadana y la resolución de incidencias en tu municipio.</p>
+        
+        <div class="pillars-row">
+            <div class="pillar-pill"><span>📍</span> Proximidad</div>
+            <div class="pillar-pill"><span>🧠</span> Inteligencia</div>
+            <div class="pillar-pill"><span>🔍</span> Transparencia</div>
+        </div>
     </div>
 
-    <main class="main-card">
-        <h1 class="main-slogan">Descubre el futuro de la <span>Gobernanza Digital</span></h1>
-        <p class="sub-slogan">Escanea el código QR para informarte y solicita una demostración interactiva para tu municipio o institución.</p>
-
-        <div class="qr-frame-wrapper">
-            <img class="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://citizenback.es&color=0f172a&bgcolor=ffffff" alt="Código QR CitizenBack">
-            <div class="qr-url-badge">citizenback.es</div>
+    <!-- CHAT ANIMADO MUNICIPAL -->
+    <div class="avatar-chat-container">
+        <div class="avatar-header-large">
+            <div class="chat-avatar-xl">
+                <video id="heroAvatarVideo" src="avatarhablando.mp4" autoplay muted playsinline></video>
+            </div>
+            <div>
+                <div class="avatar-status-title">Asistente Municipal IA</div>
+                <div class="avatar-status-sub"><div class="status-dot"></div> Activo 24h</div>
+            </div>
         </div>
 
-        <div class="scan-instruction">
-            <span>📱</span> Apunta con la cámara de tu móvil para acceder
+        <div class="whatsapp-box">
+            <div class="chat-messages-scroll" id="chatScroll"></div>
+            <div class="chat-bubble-cta" onclick="document.getElementById('formularioDemo').scrollIntoView();">
+                🚀 Clic para solicitar demostración
+            </div>
         </div>
-    </main>
+    </div>
+</section>
 
+<!-- BLOQUE 1 -->
+<section class="section-container" id="bloque1">
+    <div class="section-title">
+        <h2>1. Escucha Activa y <span>Satisfacción</span></h2>
+        <p>Evaluación directa del sentimiento de tus vecinos</p>
+    </div>
+
+    <div class="voting-widget-box">
+        <h3 style="font-size:16px; font-weight:800; color:var(--text-dark);">¿Cómo valoran los vecinos la gestión?</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-top:2px;">Haz clic para registrar un voto de prueba:</p>
+        
+        <div class="faces-interactive-row">
+            <div class="face-vote-btn" onclick="voteEmoji('😡', 'Muy descontento')">
+                <span>😡</span>
+                <span class="face-lbl">Descontento</span>
+            </div>
+            <div class="face-vote-btn" onclick="voteEmoji('😕', 'Mejorable')">
+                <span>😕</span>
+                <span class="face-lbl">Mejorable</span>
+            </div>
+            <div class="face-vote-btn" onclick="voteEmoji('😐', 'Neutral')">
+                <span>😐</span>
+                <span class="face-lbl">Neutral</span>
+            </div>
+            <div class="face-vote-btn" onclick="voteEmoji('🙂', 'Satisfecho')">
+                <span>🙂</span>
+                <span class="face-lbl">Satisfecho</span>
+            </div>
+            <div class="face-vote-btn selected" onclick="voteEmoji('😄', 'Muy satisfecho')">
+                <span>😄</span>
+                <span class="face-lbl">Satisfecho</span>
+            </div>
+        </div>
+        <div id="voteFeedback" style="font-size:12px; font-weight:800; color:var(--primary); min-height:18px;">
+            Valoración seleccionada: 😄 Muy satisfecho
+        </div>
+    </div>
+</section>
+
+<!-- BLOQUE 2 CON FONDO CIUDAD2.PNG -->
+<section class="bg-city-section-2" id="bloque2">
+    <div class="section-title">
+        <h2>2. Ciclo Continuo <span>IA</span></h2>
+        <p>De la calle al cuadro de mando municipal</p>
+    </div>
+
+    <div class="cycle-container">
+        <div class="cycle-card">
+            <div class="cycle-badge">FASE 1: CAPTACIÓN</div>
+            <div class="cycle-icon">🗳️</div>
+            <h3 style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:4px;">Urna Digital y QR</h3>
+            <p style="font-size:12px; color:var(--text-muted);">Captación mediante tótems e interacción móvil instantánea.</p>
+        </div>
+
+        <div class="cycle-card">
+            <div class="cycle-badge">FASE 2: IA Y MAPA</div>
+            <div class="cycle-icon">🧠</div>
+            <h3 style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:4px;">Motor Inteligente</h3>
+            <p style="font-size:12px; color:var(--text-muted);">Prioriza, categoriza y propone actuaciones técnicas automáticas.</p>
+        </div>
+
+        <div class="cycle-card">
+            <div class="cycle-badge">FASE 3: ACCIÓN</div>
+            <div class="cycle-icon">📊</div>
+            <h3 style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:4px;">Panel Técnico</h3>
+            <p style="font-size:12px; color:var(--text-muted);">Gestión ágil para brigadas y respuesta pública transparente.</p>
+        </div>
+    </div>
+</section>
+
+<!-- BLOQUE 3 -->
+<section class="section-container" id="bloque3">
+    <div class="section-title">
+        <h2>3. Fases y <span>Solicitud de Demo</span></h2>
+        <p>Acompañamiento técnico adaptado a tu territorio</p>
+    </div>
+
+    <div class="expertise-flow-grid">
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">01</div>
+            <div class="expertise-step-content">
+                <h4>Análisis Territorial</h4>
+                <p>Estudio especializado de las necesidades de tu municipio.</p>
+            </div>
+        </div>
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">02</div>
+            <div class="expertise-step-content">
+                <h4>Configuración a Medida</h4>
+                <p>Adaptación funcional del sistema al mapa y áreas de trabajo.</p>
+            </div>
+        </div>
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">03</div>
+            <div class="expertise-step-content">
+                <h4>Despliegue IA</h4>
+                <p>Activación del motor en tiempo real para análisis de incidencias.</p>
+            </div>
+        </div>
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">04</div>
+            <div class="expertise-step-content">
+                <h4>Participación Ciudadana</h4>
+                <p>Incentivo del uso del sistema y talleres con los vecinos.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-wrapper-grid" id="formularioDemo">
+        <div class="avatar-png-side">
+            <img src="avatar.png" alt="Avatar Alcalde Digital" onerror="this.style.display='none';">
+        </div>
+
+        <div>
+            <h3 style="font-size:19px; font-weight:900; color:var(--text-dark); margin-bottom:4px;">Solicitar Demo Municipal</h3>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:18px;">Completa los datos para agendar una sesión:</p>
+
+            <form onsubmit="sendDemoFormspree(event)">
+                <div class="form-group">
+                    <label>Nombre y Apellidos</label>
+                    <input type="text" id="demoName" placeholder="Ej. Joan Simó" required>
+                </div>
+                <div class="form-group">
+                    <label>Cargo Municipal</label>
+                    <input type="text" id="demoRole" placeholder="Ej. Alcalde / Concejal / Técnico" required>
+                </div>
+                <div class="form-group">
+                    <label>Ayuntamiento / Municipio</label>
+                    <input type="text" id="demoTown" placeholder="Ej. Benetússer" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo Oficial</label>
+                    <input type="email" id="demoEmail" placeholder="ejemplo@municipio.es" required>
+                </div>
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea id="demoNotes" rows="2" placeholder="Necesidades del municipio..."></textarea>
+                </div>
+                <button type="submit" id="btnSubmitForm" class="btn-submit-demo-glow">🚀 AGENDAR DEMOSTRACIÓN</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Alcalde Digital ROI — Smart City & GoverTech con IA.</p>
+</footer>
+
+<script>
+const chatScript = [
+    { type: 'bot', text: '¡Hola! Soy el asistente virtual del municipio.' },
+    { type: 'bot', text: '¿En qué área quieres participar?' },
+    { type: 'user', text: '🌳 Parques y jardines.' },
+    { type: 'bot', text: '¡Excelente! ¿Cuál es tu nivel de satisfacción?' },
+    { type: 'user', text: '😐 Satisfacción media (3/5).' },
+    { type: 'bot', text: '¿Qué quieres proponer?' },
+    { type: 'user', text: 'Faltan bancos en la zona de columpios.' },
+    { type: 'bot', text: '📍 Propuesta registrada. ¡Gracias!' }
+];
+
+let chatIndex = 0;
+function playChatAnimation() {
+    const chatContainer = document.getElementById('chatScroll');
+    if (!chatContainer) return;
+    if (chatIndex < chatScript.length) {
+        const item = chatScript[chatIndex];
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${item.type}`;
+        bubble.textContent = item.text;
+        chatContainer.appendChild(bubble);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        chatIndex++;
+        setTimeout(playChatAnimation, 2000);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const heroVid = document.getElementById('heroAvatarVideo');
+    if (heroVid) {
+        heroVid.onended = () => {
+            heroVid.src = "avatarasentir.mp4";
+            heroVid.loop = true;
+            heroVid.play();
+        };
+    }
+});
+
+window.addEventListener('scroll', () => {
+    const sections = ['bloque1', 'bloque2', 'bloque3'];
+    let currentActive = 'bloque1';
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 180) {
+                currentActive = id;
+            }
+        }
+    });
+
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const activeLink = document.getElementById(`nav-link-${currentActive}`);
+    if (activeLink) activeLink.classList.add('active');
+});
+
+function voteEmoji(emoji, label) {
+    document.querySelectorAll('.face-vote-btn').forEach(b => b.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+    document.getElementById('voteFeedback').textContent = `Valoración registrada: ${emoji} ${label}`;
+}
+
+async function sendDemoFormspree(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnSubmitForm');
+    btn.textContent = "⏳ ENVIANDO...";
+    btn.disabled = true;
+
+    const payload = {
+        nombre: document.getElementById('demoName').value,
+        cargo: document.getElementById('demoRole').value,
+        ayuntamiento: document.getElementById('demoTown').value,
+        email: document.getElementById('demoEmail').value,
+        observaciones: document.getElementById('demoNotes').value
+    };
+
+    try {
+        const response = await fetch("https://formspree.io/f/xvkzjvrq", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert("✅ Solicitud enviada con éxito. Contactaremos contigo de inmediato.");
+            e.target.reset();
+        } else {
+            alert("⚠️ Error al enviar el formulario.");
+        }
+    } catch (err) {
+        alert("❌ Error de comunicación.");
+    } finally {
+        btn.textContent = "🚀 AGENDAR DEMOSTRACIÓN";
+        btn.disabled = false;
+    }
+}
+
+window.onload = () => {
+    setTimeout(playChatAnimation, 600);
+};
+</script>
 </body>
 </html>
