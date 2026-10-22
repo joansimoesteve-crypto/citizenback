@@ -46,11 +46,11 @@
     }
     .btn-cta-header:hover { transform: translateY(-2px); background: #00e084; }
 
-    /* HERO SECTION CON IMAGEN DE FONDO ROBUSTA */
+    /* HERO SECTION CON IMAGEN DE FONDO CIUDAD.PNG */
     .hero-container {
         position: relative; min-height: 92vh; padding: 60px 20px; display: flex; align-items: center; justify-content: center;
         background: linear-gradient(180deg, rgba(5,7,10,0.72) 0%, rgba(5,7,10,0.95) 100%),
-                    url('Imagen_Hom.jpg') center/cover no-repeat;
+                    url('ciudad.png') center/cover no-repeat;
     }
 
     .hero-content { max-width: 1280px; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; z-index: 2; }
@@ -72,7 +72,7 @@
         font-size: 12px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px;
     }
 
-    /* CAJA CHAT WHATSAPP */
+    /* CAJA CHAT WHATSAPP CON AVATARHABLANDO.MP4 Y AVATARASENTIR.MP4 */
     .avatar-chat-container {
         background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(20px); border: 1px solid var(--border);
         border-radius: 24px; padding: 22px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); position: relative;
@@ -147,10 +147,10 @@
     .face-vote-btn:hover, .face-vote-btn.selected { transform: scale(1.3) translateY(-6px); filter: grayscale(0) drop-shadow(0 0 12px var(--primary)); }
     .face-lbl { font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 6px; }
 
-    /* BLOQUE 2: CICLO CON FONDO DE CIUDAD SOSTENIBLE */
+    /* BLOQUE 2: CICLO CON FONDO DE CIUDAD2.PNG */
     .bg-city-section {
         background: linear-gradient(180deg, rgba(5,7,10,0.85) 0%, rgba(5,7,10,0.92) 100%),
-                    url('Imagen_Hom.jpg') center/cover fixed;
+                    url('ciudad2.png') center/cover fixed;
         border-y: 1px solid var(--border); padding: 50px 0;
     }
 
@@ -273,11 +273,11 @@
             </div>
         </div>
 
-        <!-- CONVERSACIÓN DINÁMICA DE CHAT MUNICIPAL -->
+        <!-- CONVERSACIÓN DINÁMICA DE CHAT MUNICIPAL CON VIDEO AVATARHABLANDO.MP4 Y AVATARASENTIR.MP4 -->
         <div class="avatar-chat-container">
             <div class="avatar-header-large">
                 <div class="chat-avatar-xl">
-                    <video src="avatarasentir.mp4" autoplay muted loop playsinline></video>
+                    <video id="heroAvatarVideo" src="avatarhablando.mp4" autoplay muted playsinline></video>
                 </div>
                 <div>
                     <div class="avatar-status-title">Asistente Municipal IA</div>
@@ -421,7 +421,7 @@
         </div>
     </div>
 
-    <!-- FORMULARIO FORMSPREE -->
+    <!-- FORMULARIO FORMSPREE CON AVATAR.PNG -->
     <div class="demo-wrapper-grid">
         <div>
             <h3 style="font-size:24px; font-weight:900; color:#fff; margin-bottom:6px;">Solicitar Demostración para tu Ayuntamiento</h3>
@@ -452,7 +452,7 @@
             </form>
         </div>
 
-        <!-- AVATAR GRANDE CON MÁSCARA -->
+        <!-- AVATAR.PNG EN LA SECCIÓN DE DEMO -->
         <div class="avatar-png-side">
             <img src="avatar.png" alt="Avatar Alcalde Digital" onerror="this.style.display='none';">
         </div>
@@ -491,6 +491,18 @@ function playChatAnimation() {
         setTimeout(playChatAnimation, 2200);
     }
 }
+
+// CONTROL DE TRANSICIÓN DE VIDEOS PARA EL AVATAR DE LA HERO
+window.addEventListener('DOMContentLoaded', () => {
+    const heroVid = document.getElementById('heroAvatarVideo');
+    if (heroVid) {
+        heroVid.onended = () => {
+            heroVid.src = "avatarasentir.mp4";
+            heroVid.loop = true;
+            heroVid.play();
+        };
+    }
+});
 
 // DETECCIÓN DE SECCIÓN ACTIVA
 window.addEventListener('scroll', () => {
