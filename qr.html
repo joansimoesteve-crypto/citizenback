@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso QR | Alcalde Digital ROI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #00b065;
+        --primary-glow: rgba(0, 176, 101, 0.4);
+        --bg-light: #fdfbf7;
+        --text-dark: #0f172a;
+        --text-muted: #475569;
+        --border: rgba(0, 0, 0, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; width: 100%; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+
+    body {
+        background: linear-gradient(180deg, rgba(253, 251, 247, 0.85) 0%, rgba(244, 240, 232, 0.95) 100%),
+                    url('ciudad.png') center/cover no-repeat fixed;
+        color: var(--text-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .brand-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #ffffff;
+        padding: 10px 24px;
+        border-radius: 30px;
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        margin-bottom: 24px;
+    }
+    .brand-logo { font-size: 16px; font-weight: 900; letter-spacing: 1px; color: var(--primary); }
+    .brand-logo span { color: var(--text-dark); }
+    .brand-badge { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .main-card {
+        max-width: 800px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .main-slogan {
+        font-size: clamp(36px, 6vw, 62px);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        color: var(--text-dark);
+        text-shadow: 0 4px 20px rgba(255,255,255,0.9);
+    }
+    .main-slogan span {
+        color: var(--primary);
+        display: inline-block;
+        background: linear-gradient(135deg, #00b065, #008a4f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .sub-slogan {
+        font-size: clamp(16px, 2.5vw, 22px);
+        font-weight: 700;
+        color: var(--text-muted);
+        max-width: 620px;
+        line-height: 1.4;
+    }
+
+    .qr-frame-wrapper {
+        position: relative;
+        background: #ffffff;
+        padding: 24px;
+        border-radius: 32px;
+        border: 2px solid var(--primary);
+        box-shadow: 0 25px 60px rgba(0, 176, 101, 0.25), 0 10px 25px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        transition: transform 0.3s ease;
+        margin: 10px 0;
+    }
+    .qr-frame-wrapper:hover {
+        transform: scale(1.02);
+    }
+
+    .qr-code-img {
+        width: clamp(240px, 45vw, 380px);
+        height: clamp(240px, 45vw, 380px);
+        object-fit: contain;
+        border-radius: 12px;
+    }
+
+    .qr-url-badge {
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--primary);
+        letter-spacing: 0.5px;
+    }
+
+    .scan-instruction {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--text-dark);
+        background: #ffffff;
+        padding: 12px 28px;
+        border-radius: 30px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        animation: pulseInstruction 2s infinite ease-in-out;
+    }
+    @keyframes pulseInstruction {
+        0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+        50% { transform: scale(1.04); box-shadow: 0 12px 28px var(--primary-glow); }
+    }
+</style>
+</head>
+<body>
+
+    <div class="brand-container">
+        <div class="brand-logo">ALCALDE DIGITAL <span>ROI</span></div>
+        <div class="brand-badge">● Presentación Oficial</div>
+    </div>
+
+    <main class="main-card">
+        <h1 class="main-slogan">Descubre el futuro de la <span>Gobernanza Digital</span></h1>
+        <p class="sub-slogan">Escanea el código QR para informarte y solicita una demostración interactiva para tu municipio o institución.</p>
+
+        <div class="qr-frame-wrapper">
+            <img class="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://citizenback.es&color=0f172a&bgcolor=ffffff" alt="Código QR CitizenBack">
+            <div class="qr-url-badge">citizenback.es</div>
+        </div>
+
+        <div class="scan-instruction">
+            <span>📱</span> Apunta con la cámara de tu móvil para acceder
+        </div>
+    </main>
+
+</body>
+</html>
