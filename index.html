@@ -22,43 +22,46 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg-light); color: var(--text-dark); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
 
-    /* NAVEGACIÓN FLOTANTE ELEGANTE */
+    /* CABECERA CORREGIDA: DOS FILAS EN MÓVIL, UNA FILA EN ESCRITORIO */
     .header-sticky-wrapper {
-        position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.94);
-        backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 12px 16px;
+        position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.95);
+        backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 10px 16px;
     }
     .header { display: flex; flex-direction: column; gap: 10px; max-width: 1280px; margin: 0 auto; }
     .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     
     .brand-badge { background: #ffffff; padding: 6px 14px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-    .logo { font-size: 14px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
+    .logo { font-size: 13.5px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
     .logo span { color: var(--text-dark); }
-    .online { font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
+    .online { font-size: 10px; color: var(--text-muted); font-weight: 600; }
 
-    /* BOTÓN "PEDIR DEMO" CON AURA VIVA Y ANIMADA */
+    /* BOTÓN PEDIR DEMO CON AURA VIVA */
     .btn-cta-header {
-        background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important; font-weight: 800; padding: 10px 18px; border-radius: 10px;
-        text-decoration: none; font-size: 12.5px; box-shadow: 0 4px 14px var(--primary-glow); white-space: nowrap; transition: all 0.2s;
+        background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important; font-weight: 800; padding: 8px 16px; border-radius: 10px;
+        text-decoration: none; font-size: 12px; box-shadow: 0 4px 14px var(--primary-glow); white-space: nowrap; transition: all 0.2s;
         animation: pulseDemoGlow 2.2s infinite ease-in-out;
     }
     @keyframes pulseDemoGlow {
-        0%, 100% { box-shadow: 0 0 10px rgba(0, 176, 101, 0.4); transform: scale(1); }
-        50% { box-shadow: 0 0 22px rgba(0, 176, 101, 0.8); transform: scale(1.03); }
+        0%, 100% { box-shadow: 0 0 8px rgba(0, 176, 101, 0.4); transform: scale(1); }
+        50% { box-shadow: 0 0 18px rgba(0, 176, 101, 0.85); transform: scale(1.025); }
     }
 
-    /* CONTENEDOR DE NAVEGACIÓN CORREGIDO SIN CORTES CON PADDING DE SEGURIDAD */
-    .nav-bloques { display: flex; gap: 8px; width: 100%; overflow-x: auto; padding: 4px 16px 8px 2px; }
+    /* FILA DE NAVEGACIÓN INDEPENDIENTE EN MÓVIL */
+    .nav-bloques { 
+        display: flex; gap: 6px; width: 100%; overflow-x: auto; padding: 2px 0; 
+        -webkit-overflow-scrolling: touch;
+    }
     .nav-bloques::-webkit-scrollbar { display: none; }
     .nav-btn {
-        color: var(--text-muted); text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 11.5px; font-weight: 700;
+        flex: 1; text-align: center; color: var(--text-muted); text-decoration: none; padding: 7px 12px; border-radius: 18px; font-size: 11px; font-weight: 700;
         background: #ffffff; border: 1px solid var(--border); white-space: nowrap; flex-shrink: 0; transition: all 0.2s;
         box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
     .nav-btn.active, .nav-btn:hover { background: var(--primary); color: #ffffff !important; border-color: var(--primary); font-weight: 800; }
 
-    /* HERO SECTION CON FONDO DE CIUDAD Y DINAMISMO */
+    /* HERO SECTION CON FONDO CIUDAD.PNG */
     .hero-container {
-        position: relative; padding: 36px 16px 48px; display: flex; flex-direction: column; gap: 28px;
+        position: relative; padding: 32px 16px 44px; display: flex; flex-direction: column; gap: 28px;
         background: linear-gradient(180deg, rgba(253, 251, 247, 0.88) 0%, rgba(253, 251, 247, 0.98) 100%),
                     url('ciudad.png') center/cover no-repeat;
     }
@@ -67,62 +70,62 @@
     .tag-participacion {
         display: inline-block; background: rgba(0, 176, 101, 0.1); color: var(--primary);
         border: 1px solid rgba(0, 176, 101, 0.3); padding: 5px 14px; border-radius: 20px;
-        font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+        font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
     }
 
-    /* SLOGAN DINÁMICO QUE CAE DESDE ARRIBA CON AURA */
+    /* SLOGAN CON CAÍDA SUAVE */
     .hero h1 { 
-        font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 14px; letter-spacing: -0.5px; color: var(--text-dark);
+        font-size: 30px; font-weight: 900; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-dark);
         animation: slideDownAura 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .hero h1 span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
     @keyframes slideDownAura {
-        0% { opacity: 0; transform: translateY(-24px); }
+        0% { opacity: 0; transform: translateY(-20px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
-    .subtitle-info { font-size: 15.5px; color: #334155; font-weight: 700; margin-bottom: 12px; }
-    .core-description { font-size: 13.5px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.6; }
+    .subtitle-info { font-size: 15px; color: #334155; font-weight: 700; margin-bottom: 10px; }
+    .core-description { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
 
     /* PILARES ALINEADOS */
     .pillars-row { display: flex; gap: 8px; margin-bottom: 10px; width: 100%; }
     .pillar-pill {
         flex: 1; text-align: center; justify-content: center;
-        background: #ffffff; border: 1px solid var(--border-strong); padding: 8px 12px; border-radius: 12px;
-        font-size: 11.5px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 6px;
+        background: #ffffff; border: 1px solid var(--border-strong); padding: 8px 10px; border-radius: 12px;
+        font-size: 11px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 5px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.03); white-space: nowrap;
     }
 
-    /* CHAT DE WHATSAPP MÓVIL ESTILO CLARO */
+    /* CHAT WHATSAPP */
     .avatar-chat-container {
         background: #ffffff; border: 1px solid var(--border-strong);
-        border-radius: 22px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-        display: flex; flex-direction: column; gap: 14px; width: 100%;
+        border-radius: 22px; padding: 16px; box-shadow: 0 18px 38px rgba(0,0,0,0.05);
+        display: flex; flex-direction: column; gap: 12px; width: 100%;
     }
     .avatar-header-large { display: flex; align-items: center; gap: 12px; }
     .chat-avatar-xl {
-        width: 58px; height: 58px; border-radius: 50%; border: 2px solid var(--primary);
+        width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--primary);
         box-shadow: 0 0 12px var(--primary-glow); overflow: hidden; flex-shrink: 0;
     }
     .chat-avatar-xl video { width: 100%; height: 100%; object-fit: cover; }
-    .avatar-status-title { font-size: 15.5px; font-weight: 900; color: var(--text-dark); }
-    .avatar-status-sub { font-size: 11.5px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 5px; }
-    .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; }
+    .avatar-status-title { font-size: 15px; font-weight: 900; color: var(--text-dark); }
+    .avatar-status-sub { font-size: 11px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    .status-dot { width: 7px; height: 7px; background: var(--primary); border-radius: 50%; }
 
     .whatsapp-box {
-        background: #f8f6f0; border-radius: 16px; padding: 14px; border: 1px solid var(--border);
+        background: #f8f6f0; border-radius: 16px; padding: 12px; border: 1px solid var(--border);
         display: flex; flex-direction: column; gap: 10px;
     }
     
     .chat-messages-scroll {
-        display: flex; flex-direction: column; gap: 10px; overflow-y: auto;
-        height: 240px; max-height: 240px; padding-right: 4px;
+        display: flex; flex-direction: column; gap: 8px; overflow-y: auto;
+        height: 220px; max-height: 220px; padding-right: 4px;
     }
     .chat-messages-scroll::-webkit-scrollbar { width: 4px; }
     .chat-messages-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
     .chat-bubble {
-        padding: 10px 14px; border-radius: 14px; font-size: 12.5px; line-height: 1.4; max-width: 90%;
+        padding: 9px 13px; border-radius: 13px; font-size: 12px; line-height: 1.4; max-width: 90%;
         opacity: 0; transform: translateY(8px); animation: fadeInUp 0.3s forwards ease-out;
     }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
@@ -131,90 +134,84 @@
     .chat-bubble.user { background: var(--primary); color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 2px; }
 
     .chat-bubble-cta {
-        background: #ffffff; border: 1px dashed var(--primary); color: var(--primary); padding: 10px;
-        border-radius: 10px; font-size: 11.5px; font-weight: 800; text-align: center; cursor: pointer; transition: all 0.2s;
+        background: #ffffff; border: 1px dashed var(--primary); color: var(--primary); padding: 9px;
+        border-radius: 10px; font-size: 11px; font-weight: 800; text-align: center; cursor: pointer; transition: all 0.2s;
     }
-    .chat-bubble-cta:hover { background: var(--primary); color: #ffffff; }
 
-    /* SECCIONES Y BLOQUES CON IMAGEN DE FONDO */
-    .section-container { padding: 48px 16px; }
-    .bg-city-section-1 {
-        background: linear-gradient(180deg, rgba(253, 251, 247, 0.92) 0%, rgba(253, 251, 247, 0.98) 100%),
-                    url('ciudad2.png') center/cover no-repeat;
-    }
+    /* SECCIONES CON FONDO CIUDAD2.PNG */
+    .section-container { padding: 44px 16px; }
+    
     .bg-city-section-2 {
         background: linear-gradient(180deg, rgba(244, 240, 232, 0.92) 0%, rgba(244, 240, 232, 0.98) 100%),
-                    url('ciudad.png') center/cover no-repeat;
-        padding: 48px 16px; border-y: 1px solid var(--border);
+                    url('ciudad2.png') center/cover no-repeat;
+        padding: 44px 16px; border-y: 1px solid var(--border);
     }
 
-    .section-title { text-align: center; margin-bottom: 28px; }
-    .section-title h2 { font-size: 24px; font-weight: 900; color: var(--text-dark); }
+    .section-title { text-align: center; margin-bottom: 24px; }
+    .section-title h2 { font-size: 22px; font-weight: 900; color: var(--text-dark); }
     .section-title h2 span { color: var(--primary); }
-    .section-title p { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+    .section-title p { color: var(--text-muted); font-size: 12.5px; margin-top: 4px; }
 
     .voting-widget-box {
-        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 20px; padding: 24px 16px;
+        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 20px; padding: 22px 16px;
         text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
     }
-    .faces-interactive-row { display: flex; justify-content: space-around; gap: 4px; margin: 18px 0; }
+    .faces-interactive-row { display: flex; justify-content: space-around; gap: 4px; margin: 16px 0; }
     .face-vote-btn {
-        font-size: 34px; cursor: pointer; transition: transform 0.2s;
+        font-size: 32px; cursor: pointer; transition: transform 0.2s;
         filter: grayscale(0.4); display: flex; flex-direction: column; align-items: center;
     }
     .face-vote-btn.selected { transform: scale(1.25) translateY(-4px); filter: grayscale(0) drop-shadow(0 4px 10px var(--primary-glow)); }
-    .face-lbl { font-size: 9.5px; font-weight: 800; color: var(--text-muted); margin-top: 4px; }
+    .face-lbl { font-size: 9px; font-weight: 800; color: var(--text-muted); margin-top: 4px; }
 
-    .cycle-container { display: flex; flex-direction: column; gap: 18px; }
+    .cycle-container { display: flex; flex-direction: column; gap: 16px; }
     .cycle-card {
-        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 18px; padding: 24px 20px;
+        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 18px; padding: 22px 18px;
         position: relative; text-align: left; box-shadow: 0 8px 24px rgba(0,0,0,0.03);
     }
     .cycle-badge {
         position: absolute; top: -11px; left: 18px; background: var(--primary); color: #ffffff;
-        font-weight: 900; font-size: 9.5px; padding: 3px 12px; border-radius: 12px; text-transform: uppercase;
+        font-weight: 900; font-size: 9px; padding: 3px 10px; border-radius: 12px; text-transform: uppercase;
     }
-    .cycle-icon { font-size: 30px; margin-bottom: 8px; margin-top: 4px; }
+    .cycle-icon { font-size: 28px; margin-bottom: 6px; margin-top: 2px; }
 
-    /* FASES Y FORMULARIO */
-    .expertise-flow-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .expertise-flow-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
     .expertise-step-box {
-        background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 18px;
-        display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 16px;
+        display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
     .expertise-step-num {
         background: rgba(0, 176, 101, 0.1); color: var(--primary); border: 1px solid var(--primary);
-        font-weight: 900; font-size: 13px; width: 32px; height: 32px; border-radius: 10px;
+        font-weight: 900; font-size: 12px; width: 30px; height: 30px; border-radius: 10px;
         display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .expertise-step-content h4 { font-size: 14px; color: var(--text-dark); font-weight: 800; }
-    .expertise-step-content p { font-size: 12px; color: var(--text-muted); }
+    .expertise-step-content h4 { font-size: 13.5px; color: var(--text-dark); font-weight: 800; }
+    .expertise-step-content p { font-size: 11.5px; color: var(--text-muted); }
 
     /* FORMULARIO DE DEMO */
     .demo-wrapper-grid {
-        display: flex; flex-direction: column; gap: 24px;
+        display: flex; flex-direction: column; gap: 20px;
         background: #ffffff; border: 1px solid var(--border-strong);
-        border-radius: 22px; padding: 24px 18px; box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        border-radius: 22px; padding: 22px 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.05);
     }
 
-    .form-group { margin-bottom: 14px; text-align: left; }
-    .form-group label { display: block; font-size: 10.5px; font-weight: 900; color: var(--text-dark); text-transform: uppercase; margin-bottom: 5px; }
+    .form-group { margin-bottom: 12px; text-align: left; }
+    .form-group label { display: block; font-size: 10px; font-weight: 900; color: var(--text-dark); text-transform: uppercase; margin-bottom: 4px; }
     .form-group input, .form-group textarea {
-        width: 100%; background: #fdfbf7; border: 1px solid var(--border-strong); padding: 12px; border-radius: 10px;
-        color: var(--text-dark); font-size: 13px; outline: none; font-family: inherit; transition: border-color 0.2s;
+        width: 100%; background: #fdfbf7; border: 1px solid var(--border-strong); padding: 11px; border-radius: 10px;
+        color: var(--text-dark); font-size: 12.5px; outline: none; font-family: inherit; transition: border-color 0.2s;
     }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #ffffff; }
 
     .btn-submit-demo-glow {
         width: 100%; background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important;
-        font-size: 15px; font-weight: 900; padding: 16px; border-radius: 12px; border: none; cursor: pointer;
+        font-size: 14.5px; font-weight: 900; padding: 15px; border-radius: 12px; border: none; cursor: pointer;
         box-shadow: 0 6px 20px var(--primary-glow); transition: all 0.2s;
     }
-    .btn-submit-demo-glow:hover { transform: translateY(-1px); }
 
     /* AVATAR DE CARA GRANDE ENFOCADO */
     .avatar-png-side {
-        width: 100%; height: 280px; position: relative; display: flex;
+        width: 100%; height: 260px; position: relative; display: flex;
         justify-content: center; align-items: center; overflow: hidden; border-radius: 18px;
         background: radial-gradient(circle, rgba(0, 176, 101, 0.08) 0%, transparent 75%);
     }
@@ -226,12 +223,13 @@
         filter: drop-shadow(0 8px 18px rgba(0,0,0,0.1));
     }
 
-    footer { border-top: 1px solid var(--border); padding: 24px 16px; text-align: center; font-size: 11.5px; color: var(--text-muted); background: #ffffff; }
+    footer { border-top: 1px solid var(--border); padding: 22px 16px; text-align: center; font-size: 11px; color: var(--text-muted); background: #ffffff; }
 
     /* ESCRITORIO Y PANTALLAS ANCHAS */
     @media (min-width: 850px) {
         .header { flex-direction: row; justify-content: space-between; align-items: center; }
-        .nav-bloques { width: auto; padding-bottom: 0; }
+        .header-top-row { width: auto; }
+        .nav-bloques { width: auto; padding: 0; }
         .hero-container { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 64px 24px; gap: 40px; }
         .hero h1 { font-size: 42px; }
         .cycle-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -252,7 +250,6 @@
                 <div class="logo">ALCALDE DIGITAL <span>ROI</span></div>
                 <div class="online">Gobernanza Inteligente</div>
             </div>
-            <!-- APUNTA DIRECTAMENTE AL FORMULARIO DE DEMO -->
             <a href="#formularioDemo" class="btn-cta-header">Pedir Demo</a>
         </div>
 
@@ -272,7 +269,6 @@
         <p class="subtitle-info">Conoce en tiempo real todo lo que piensan los habitantes.</p>
         <p class="core-description">Plataforma integral que une la captación física y digital con un motor IA que prioriza e impulsa la participación ciudadana y la resolución de incidencias en tu municipio.</p>
         
-        <!-- PILARES EN LA MISMA LÍNEA -->
         <div class="pillars-row">
             <div class="pillar-pill"><span>📍</span> Proximidad</div>
             <div class="pillar-pill"><span>🧠</span> Inteligencia</div>
@@ -302,7 +298,7 @@
 </section>
 
 <!-- BLOQUE 1 -->
-<section class="section-container bg-city-section-1" id="bloque1">
+<section class="section-container" id="bloque1">
     <div class="section-title">
         <h2>1. Escucha Activa y <span>Satisfacción</span></h2>
         <p>Evaluación directa del sentimiento de tus vecinos</p>
@@ -340,7 +336,7 @@
     </div>
 </section>
 
-<!-- BLOQUE 2 -->
+<!-- BLOQUE 2 CON FONDO CIUDAD2.PNG -->
 <section class="bg-city-section-2" id="bloque2">
     <div class="section-title">
         <h2>2. Ciclo Continuo <span>IA</span></h2>
