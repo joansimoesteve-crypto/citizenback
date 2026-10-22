@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alcalde Digital ROI | Gobernanza Inteligente y Participación Ciudadana</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #00c875;
+        --primary-glow: rgba(0, 200, 117, 0.55);
+        --bg-dark: #05070a;
+        --surface: rgba(15, 23, 42, 0.88);
+        --surface-card: rgba(30, 41, 59, 0.82);
+        --border: rgba(255, 255, 255, 0.15);
+        --text: #ffffff;
+        --muted: #a1a1aa;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-dark); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAVEGACIÓN FLOTANTE */
+    .header-sticky-wrapper {
+        position: sticky; top: 0; z-index: 1000; background: rgba(5, 7, 10, 0.94);
+        backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 12px 24px;
+    }
+    .header { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; }
+    .brand-section { display: flex; align-items: center; gap: 12px; }
+    .brand-badge { background: rgba(12, 17, 26, 0.95); padding: 6px 14px; border-radius: 12px; border: 1px solid var(--border); }
+    .logo { font-size: 14px; font-weight: 900; letter-spacing: 1px; color: var(--primary); }
+    .logo span { color: #ffffff; }
+    .online { font-size: 10.5px; color: var(--muted); font-weight: 600; }
+
+    .nav-bloques { display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 30px; border: 1px solid var(--border); }
+    .nav-btn {
+        color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover, .nav-btn.active { background: var(--primary); color: #000 !important; box-shadow: 0 0 15px var(--primary-glow); }
+
+    .btn-cta-header {
+        background: var(--primary); color: #000; font-weight: 800; padding: 10px 20px; border-radius: 10px;
+        text-decoration: none; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .btn-cta-header:hover { transform: translateY(-2px); background: #00e084; }
+
+    /* HERO SECTION CON IMAGEN DE FONDO ROBUSTA */
+    .hero-container {
+        position: relative; min-height: 92vh; padding: 60px 20px; display: flex; align-items: center; justify-content: center;
+        background: linear-gradient(180deg, rgba(5,7,10,0.72) 0%, rgba(5,7,10,0.95) 100%),
+                    url('Imagen_Hom.jpg') center/cover no-repeat;
+    }
+
+    .hero-content { max-width: 1280px; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; z-index: 2; }
+    
+    .hero-text-side { padding-right: 20px; }
+    .tag-participacion {
+        display: inline-block; background: rgba(0, 200, 117, 0.18); color: var(--primary);
+        border: 1px solid var(--primary); padding: 6px 18px; border-radius: 30px;
+        font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 42px; font-weight: 900; line-height: 1.15; margin-bottom: 16px; letter-spacing: -1px; }
+    .hero h1 span { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
+    .subtitle-info { font-size: 17px; color: #e2e8f0; font-weight: 600; margin-bottom: 14px; }
+    .core-description { font-size: 14px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+
+    .pillars-row { display: flex; gap: 12px; margin-bottom: 30px; }
+    .pillar-pill {
+        background: rgba(15, 23, 42, 0.8); border: 1px solid var(--primary); padding: 6px 14px; border-radius: 20px;
+        font-size: 12px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px;
+    }
+
+    /* CAJA CHAT WHATSAPP */
+    .avatar-chat-container {
+        background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(20px); border: 1px solid var(--border);
+        border-radius: 24px; padding: 22px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); position: relative;
+        height: 500px; max-height: 500px; min-height: 500px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
+    }
+    .avatar-header-large { display: flex; align-items: center; gap: 16px; flex-shrink: 0; margin-bottom: 12px; }
+    .chat-avatar-xl {
+        width: 75px; height: 75px; border-radius: 50%; border: 3px solid var(--primary);
+        box-shadow: 0 0 25px var(--primary-glow); overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .chat-avatar-xl video { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-status-title { font-size: 17px; font-weight: 900; color: #fff; }
+    .avatar-status-sub { font-size: 12px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 8px var(--primary); }
+
+    .whatsapp-box {
+        background: rgba(7, 10, 15, 0.95); border-radius: 18px; padding: 14px; border: 1px solid var(--border);
+        flex: 1; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; height: 100%;
+    }
+    
+    .chat-messages-scroll {
+        display: flex; flex-direction: column; gap: 10px; overflow-y: auto; padding-right: 6px; flex: 1;
+        max-height: 320px; height: 320px;
+    }
+    .chat-messages-scroll::-webkit-scrollbar { width: 4px; }
+    .chat-messages-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+    .chat-bubble {
+        padding: 10px 14px; border-radius: 14px; font-size: 12.5px; line-height: 1.45; max-width: 88%;
+        color: #ffffff !important; opacity: 0; transform: translateY(10px); animation: fadeInUp 0.4s forwards ease-out;
+    }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    .chat-bubble.bot {
+        background: #008f53; font-weight: 600; align-self: flex-start;
+        border-bottom-left-radius: 2px; box-shadow: 0 0 10px rgba(0, 200, 117, 0.3);
+    }
+    .chat-bubble.user {
+        background: rgba(255, 255, 255, 0.16); align-self: flex-end;
+        border-bottom-right-radius: 2px; border: 1px solid var(--border);
+    }
+
+    .chat-bubble-cta {
+        background: rgba(0, 200, 117, 0.18); border: 1px dashed var(--primary); color: #fff; padding: 10px 14px;
+        border-radius: 10px; font-size: 12px; font-weight: 800; text-align: center; cursor: pointer; transition: all 0.2s;
+        flex-shrink: 0; margin-top: 10px;
+    }
+    .chat-bubble-cta:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary-glow); }
+
+    /* CREDENCIALES DEL PROYECTO */
+    .credentials-bar { background: rgba(15, 23, 42, 0.95); border-y: 1px solid var(--border); padding: 20px 0; text-align: center; }
+    .credentials-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .cred-item { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .cred-item span { color: var(--primary); font-size: 18px; }
+
+    /* SECCIONES GENERALES */
+    .section-container { max-width: 1280px; margin: 0 auto; padding: 80px 20px; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 34px; font-weight: 900; }
+    .section-title h2 span { color: var(--primary); }
+    .section-title p { color: var(--muted); font-size: 15px; }
+
+    .voting-widget-box {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px;
+        text-align: center; margin-bottom: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .faces-interactive-row { display: flex; justify-content: center; gap: 24px; margin: 20px 0; }
+    .face-vote-btn {
+        font-size: 42px; cursor: pointer; transition: transform 0.3s, filter 0.3s;
+        filter: grayscale(0.5); display: flex; flex-direction: column; align-items: center;
+    }
+    .face-vote-btn:hover, .face-vote-btn.selected { transform: scale(1.3) translateY(-6px); filter: grayscale(0) drop-shadow(0 0 12px var(--primary)); }
+    .face-lbl { font-size: 11px; font-weight: 800; color: var(--muted); margin-top: 6px; }
+
+    /* BLOQUE 2: CICLO CON FONDO DE CIUDAD SOSTENIBLE */
+    .bg-city-section {
+        background: linear-gradient(180deg, rgba(5,7,10,0.85) 0%, rgba(5,7,10,0.92) 100%),
+                    url('Imagen_Hom.jpg') center/cover fixed;
+        border-y: 1px solid var(--border); padding: 50px 0;
+    }
+
+    .cycle-wrapper-rel { position: relative; }
+    .cycle-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; z-index: 2; }
+    
+    .cycle-glow-bg {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 85%; height: 120px; background: linear-gradient(90deg, transparent, rgba(0, 200, 117, 0.35), transparent);
+        filter: blur(45px); border-radius: 50%; pointer-events: none; z-index: 1;
+    }
+
+    .cycle-card {
+        background: rgba(15, 23, 42, 0.92); border: 1px solid var(--border); border-radius: 18px; padding: 32px 24px;
+        position: relative; transition: all 0.3s ease; text-align: left;
+    }
+    .cycle-card:hover { border-color: var(--primary); transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,200,117,0.22); }
+    .cycle-badge {
+        position: absolute; top: -14px; left: 24px; background: var(--primary); color: #000;
+        font-weight: 900; font-size: 11px; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;
+    }
+    .cycle-icon { font-size: 36px; margin-bottom: 16px; margin-top: 8px; }
+
+    /* BLOQUE 3: FASES Y DEMO */
+    .expertise-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 50px; }
+    .expertise-step-box {
+        background: var(--surface-card); border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+        display: flex; gap: 16px; align-items: flex-start;
+    }
+    .expertise-step-num {
+        background: rgba(0, 200, 117, 0.15); color: var(--primary); border: 1px solid var(--primary);
+        font-weight: 900; font-size: 14px; width: 36px; height: 36px; border-radius: 10px; display: flex;
+        align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .expertise-step-content h4 { font-size: 15px; color: #fff; font-weight: 800; margin-bottom: 4px; }
+    .expertise-step-content p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+    .demo-wrapper-grid {
+        display: grid; grid-template-columns: 1fr 340px; gap: 30px; align-items: center;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(7, 9, 14, 0.98));
+        border: 1px solid var(--primary); border-radius: 24px; padding: 36px; box-shadow: 0 0 45px var(--primary-glow);
+    }
+
+    .form-group { margin-bottom: 18px; text-align: left; }
+    .form-group label { display: block; font-size: 11px; font-weight: 900; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%; background: #000; border: 1px solid var(--border); padding: 12px 14px; border-radius: 12px;
+        color: #fff; font-size: 13.5px; outline: none; font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
+
+    .btn-submit-demo-glow {
+        width: 100%; background: linear-gradient(135deg, #00c875, #009657); color: #ffffff !important;
+        font-size: 16px; font-weight: 900; padding: 16px; border-radius: 12px; border: none; cursor: pointer;
+        transition: all 0.3s ease; box-shadow: 0 0 25px var(--primary-glow); letter-spacing: 0.5px;
+        animation: pulseBtnAura 2.5s infinite ease-in-out;
+    }
+    @keyframes pulseBtnAura {
+        0%, 100% { box-shadow: 0 0 20px rgba(0,200,117,0.5); transform: scale(1); }
+        50% { box-shadow: 0 0 35px rgba(0,200,117,0.85); transform: scale(1.015); }
+    }
+    .btn-submit-demo-glow:hover { background: #00e084; transform: translateY(-3px); }
+
+    /* AVATAR PNG CON ZOOM Y MÁSCARA RADIAL */
+    .avatar-png-side {
+        text-align: center; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden;
+    }
+    .avatar-png-side img {
+        width: 125%; max-width: 320px; height: auto; transform: scale(1.15);
+        -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%);
+        mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%);
+        filter: drop-shadow(0 0 30px var(--primary-glow));
+    }
+
+    footer { border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; font-size: 12px; color: var(--muted); }
+
+    @media (max-width: 960px) {
+        .hero-content, .cycle-container, .expertise-flow-grid, .demo-wrapper-grid { grid-template-columns: 1fr; }
+        .hero h1 { font-size: 32px; }
+        .nav-bloques { display: none; }
+        .avatar-png-side { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN PRINCIPAL -->
+<div class="header-sticky-wrapper">
+    <div class="header">
+        <div class="brand-section">
+            <div class="brand-badge">
+                <div class="logo">ALCALDE DIGITAL <span>ROI</span></div>
+                <div class="online">Gobernanza Inteligente</div>
+            </div>
+        </div>
+
+        <nav class="nav-bloques">
+            <a href="#bloque1" id="nav-link-bloque1" class="nav-btn active">1. Plataforma y Voz</a>
+            <a href="#bloque2" id="nav-link-bloque2" class="nav-btn">2. El Ciclo IA</a>
+            <a href="#bloque3" id="nav-link-bloque3" class="nav-btn">3. Fases y Demo</a>
+        </nav>
+
+        <a href="#bloque3" class="btn-cta-header">Solicitar Demo</a>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero-container">
+    <div class="hero-content">
+        <div class="hero-text-side">
+            <div class="tag-participacion">PARTICIPACIÓN CIUDADANA</div>
+            <h1>Escuchamos a la ciudadanía.<br><span>Analizamos y actuamos.</span></h1>
+            <p class="subtitle-info">Conoce en tiempo real todo lo que piensan los habitantes de tu ciudad o municipio.</p>
+            <p class="core-description">La primera plataforma integral que une la captación física y digital de la opinión ciudadana, con un motor IA que prioriza y ordena las incidencias y propuestas de tu municipio en un panel de control único para que los técnicos puedan ejecutar de forma ágil y sin complicaciones.</p>
+            
+            <div class="pillars-row">
+                <div class="pillar-pill"><span>📍</span> Proximidad</div>
+                <div class="pillar-pill"><span>🧠</span> Inteligencia</div>
+                <div class="pillar-pill"><span>🔍</span> Transparencia</div>
+            </div>
+        </div>
+
+        <!-- CONVERSACIÓN DINÁMICA DE CHAT MUNICIPAL -->
+        <div class="avatar-chat-container">
+            <div class="avatar-header-large">
+                <div class="chat-avatar-xl">
+                    <video src="avatarasentir.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <div>
+                    <div class="avatar-status-title">Asistente Municipal IA</div>
+                    <div class="avatar-status-sub"><div class="status-dot"></div> Activo las 24 horas</div>
+                </div>
+            </div>
+
+            <div class="whatsapp-box">
+                <div class="chat-messages-scroll" id="chatScroll"></div>
+                <div class="chat-bubble-cta" onclick="document.getElementById('bloque3').scrollIntoView();">
+                    🚀 Haz clic aquí para solicitar una demostración
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CREDENCIALES DEL PROYECTO -->
+<div class="credentials-bar">
+    <div class="credentials-container">
+        <div class="cred-item"><span>🏛️</span> Sandbox Urbano Valencia</div>
+        <div class="cred-item"><span>🎓</span> Proyecto e Innovación UPV</div>
+        <div class="cred-item"><span>🌐</span> Tecnologías Smart City</div>
+        <div class="cred-item"><span>🏆</span> Best Presentation Award 2026</div>
+    </div>
+</div>
+
+<!-- BLOQUE 1: PLATAFORMA Y VOZ -->
+<section class="section-container" id="bloque1">
+    <div class="section-title">
+        <h2>1. Escucha Activa y <span>Satisfacción Ciudadana</span></h2>
+        <p>Evaluación directa y en tiempo real del sentimiento de los vecinos de forma muy sencilla y ágil</p>
+    </div>
+
+    <div class="voting-widget-box">
+        <h3 style="font-size:18px; font-weight:800; color:#fff;">¿Cómo valoran los ciudadanos la gestión del municipio?</h3>
+        <p style="font-size:13px; color:var(--muted); margin-top:4px;">Haz clic en una carita para simular el registro de voto de un vecino:</p>
+        
+        <div class="faces-interactive-row">
+            <div class="face-vote-btn" onclick="voteEmoji('😡', 'Muy descontento')">
+                <span>😡</span>
+                <span class="face-lbl">Muy descontento</span>
+            </div>
+            <div class="face-vote-btn" onclick="voteEmoji('😕', 'Mejorable')">
+                <span>😕</span>
+                <span class="face-lbl">Mejorable</span>
+            </div>
+            <div class="face-vote-btn" onclick="voteEmoji('😐', 'Neutral')">
+                <span>😐</span>
+                <span class="face-lbl">Neutral</span>
+            </div>
+            <div class="face-vote-btn" onclick="voteEmoji('🙂', 'Satisfecho')">
+                <span>🙂</span>
+                <span class="face-lbl">Satisfecho</span>
+            </div>
+            <div class="face-vote-btn selected" onclick="voteEmoji('😄', 'Muy satisfecho')">
+                <span>😄</span>
+                <span class="face-lbl">Muy satisfecho</span>
+            </div>
+        </div>
+        <div id="voteFeedback" style="font-size:13px; font-weight:800; color:var(--primary); min-height:20px;">
+            Valoración global seleccionada: 😄 Muy satisfecho
+        </div>
+    </div>
+</section>
+
+<!-- BLOQUE 2: EL CICLO CONTINUO -->
+<section class="bg-city-section" id="bloque2">
+    <div class="section-container">
+        <div class="section-title">
+            <h2>2. Un Ciclo Continuo que <span>se Retroalimenta</span></h2>
+            <p>De la captación en la calle al cuadro de mando técnico municipal</p>
+        </div>
+
+        <div class="cycle-wrapper-rel">
+            <div class="cycle-glow-bg"></div>
+            <div class="cycle-container">
+                <div class="cycle-card">
+                    <div class="cycle-badge">FASE 1: CAPTACIÓN</div>
+                    <div class="cycle-icon">🗳️</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#fff; margin-bottom:8px;">Prototipo Físico y Redes</h3>
+                    <p style="font-size:13px; color:var(--muted);">Urna digital interactiva instalada en equipamientos públicos combinada con acceso móvil rápido vía QR y redes sociales.</p>
+                </div>
+
+                <div class="cycle-card">
+                    <div class="cycle-badge">FASE 2: IA Y MAPA</div>
+                    <div class="cycle-icon">🧠</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#fff; margin-bottom:8px;">Motor Inteligente</h3>
+                    <p style="font-size:13px; color:var(--muted);">Procesamiento en tiempo real con Inteligencia Artificial que resume, prioriza incidencias por áreas y propone actuaciones que aprende continuamente con las interacciones.</p>
+                </div>
+
+                <div class="cycle-card">
+                    <div class="cycle-badge">FASE 3: ACCIÓN Y TRANSPARENCIA</div>
+                    <div class="cycle-icon">📊</div>
+                    <h3 style="font-size:18px; font-weight:800; color:#fff; margin-bottom:8px;">Panel Técnico y Notificación</h3>
+                    <p style="font-size:13px; color:var(--muted);">Los técnicos reciben la información ordenada con acciones predefinidas, gestionan el trabajo a realizar, retroalimentan el sistema y notifican a la ciudadanía de forma transparente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOQUE 3: FASES Y DEMO -->
+<section class="section-container" id="bloque3">
+    <div class="section-title">
+        <h2>3. Fases de Despliegue y <span>Solicitud de Demostración</span></h2>
+        <p>Acompañamiento técnico completo adaptado a cada localidad o territorio</p>
+    </div>
+
+    <div class="expertise-flow-grid">
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">01</div>
+            <div class="expertise-step-content">
+                <h4>Análisis Técnico y Territorial</h4>
+                <p>Analizamos con el conocimiento técnico y de gestión urbana que tenemos las necesidades de cada localidad o territorio.</p>
+            </div>
+        </div>
+
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">02</div>
+            <div class="expertise-step-content">
+                <h4>Configuración a Medida</h4>
+                <p>Realizamos sesiones con el equipo para definir la plataforma y adaptarla al contexto funcional de tu municipio.</p>
+            </div>
+        </div>
+
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">03</div>
+            <div class="expertise-step-content">
+                <h4>Despliegue del Motor IA</h4>
+                <p>Desplegamos la plataforma y el motor IA para procesar, categorizar y resumir toda la información en tiempo real.</p>
+            </div>
+        </div>
+
+        <div class="expertise-step-box">
+            <div class="expertise-step-num">04</div>
+            <div class="expertise-step-content">
+                <h4>Participación y Ciencia Ciudadana</h4>
+                <p>Realizamos sesiones de participación ciudadana y ciencia ciudadana con los vecinos y vecinas para incentivar el uso del sistema e impulsamos su visibilidad en redes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULARIO FORMSPREE -->
+    <div class="demo-wrapper-grid">
+        <div>
+            <h3 style="font-size:24px; font-weight:900; color:#fff; margin-bottom:6px;">Solicitar Demostración para tu Ayuntamiento</h3>
+            <p style="font-size:13px; color:var(--muted); margin-bottom:24px;">Rellena los datos para agendar una presentación técnica e interactiva:</p>
+
+            <form onsubmit="sendDemoFormspree(event)">
+                <div class="form-group">
+                    <label>Nombre y Apellidos</label>
+                    <input type="text" id="demoName" placeholder="Ej. Joan Simó" required>
+                </div>
+                <div class="form-group">
+                    <label>Cargo Municipal</label>
+                    <input type="text" id="demoRole" placeholder="Ej. Alcalde / Concejal / Director Técnico" required>
+                </div>
+                <div class="form-group">
+                    <label>Ayuntamiento o Municipio</label>
+                    <input type="text" id="demoTown" placeholder="Ej. Ayuntamiento de Benetússer" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico Oficial</label>
+                    <input type="email" id="demoEmail" placeholder="ejemplo@municipio.es" required>
+                </div>
+                <div class="form-group">
+                    <label>Observaciones o Necesidades del Municipio</label>
+                    <textarea id="demoNotes" rows="3" placeholder="Ej. Gestión ágil de incidencias urbanas, presupuestos participativos..."></textarea>
+                </div>
+                <button type="submit" id="btnSubmitForm" class="btn-submit-demo-glow">🚀 AGENDAR DEMOSTRACIÓN INTERACTIVA</button>
+            </form>
+        </div>
+
+        <!-- AVATAR GRANDE CON MÁSCARA -->
+        <div class="avatar-png-side">
+            <img src="avatar.png" alt="Avatar Alcalde Digital" onerror="this.style.display='none';">
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Alcalde Digital ROI — Proyecto de Tecnologías Smart City y Gobernanza Pública con IA.</p>
+</footer>
+
+<script>
+// SECUENCIA DE CONVERSACIÓN DEL CHAT
+const chatScript = [
+    { type: 'bot', text: '¡Hola! Soy el asistente virtual del municipio.' },
+    { type: 'bot', text: '¿En qué área quieres participar?' },
+    { type: 'user', text: '🌳 Parques y jardines.' },
+    { type: 'bot', text: '¡Excelente! ¿Cuál es tu nivel de satisfacción actual en esta área?' },
+    { type: 'user', text: '😐 Satisfacción media (3/5).' },
+    { type: 'bot', text: '¿Qué quieres proponer?' },
+    { type: 'user', text: 'Faltan más bancos en los parques donde están los columpios de los niños.' },
+    { type: 'bot', text: '📍 Propuesta registrada. Gracias por participar.' }
+];
+
+let chatIndex = 0;
+function playChatAnimation() {
+    const chatContainer = document.getElementById('chatScroll');
+    if (!chatContainer) return;
+    if (chatIndex < chatScript.length) {
+        const item = chatScript[chatIndex];
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${item.type}`;
+        bubble.textContent = item.text;
+        chatContainer.appendChild(bubble);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        chatIndex++;
+        setTimeout(playChatAnimation, 2200);
+    }
+}
+
+// DETECCIÓN DE SECCIÓN ACTIVA
+window.addEventListener('scroll', () => {
+    const sections = ['bloque1', 'bloque2', 'bloque3'];
+    let currentActive = 'bloque1';
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 200) {
+                currentActive = id;
+            }
+        }
+    });
+
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const activeLink = document.getElementById(`nav-link-${currentActive}`);
+    if (activeLink) activeLink.classList.add('active');
+});
+
+// VOTO EN VIVO
+function voteEmoji(emoji, label) {
+    document.querySelectorAll('.face-vote-btn').forEach(b => b.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+    document.getElementById('voteFeedback').textContent = `Valoración registrada: ${emoji} ${label}`;
+}
+
+// ENVÍO A FORMSPREE
+async function sendDemoFormspree(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnSubmitForm');
+    btn.textContent = "⏳ ENVIANDO SOLICITUD...";
+    btn.disabled = true;
+
+    const payload = {
+        nombre: document.getElementById('demoName').value,
+        cargo: document.getElementById('demoRole').value,
+        ayuntamiento: document.getElementById('demoTown').value,
+        email: document.getElementById('demoEmail').value,
+        observaciones: document.getElementById('demoNotes').value
+    };
+
+    try {
+        const response = await fetch("https://formspree.io/f/xvkzjvrq", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert("✅ Solicitud enviada correctamente. Se ha notificado al equipo y nos pondremos en contacto contigo de inmediato.");
+            e.target.reset();
+        } else {
+            const errData = await response.json();
+            alert("⚠️ No se pudo enviar el formulario: " + (errData.error || "Revisa la configuración."));
+        }
+    } catch (err) {
+        console.error("Error al enviar a Formspree:", err);
+        alert("❌ Error de comunicación. Inténtalo de nuevo.");
+    } finally {
+        btn.textContent = "🚀 AGENDAR DEMOSTRACIÓN INTERACTIVA";
+        btn.disabled = false;
+    }
+}
+
+// ACTIVACIÓN INICIAL DEL CHAT AL CARGAR
+window.onload = () => {
+    setTimeout(playChatAnimation, 800);
+};
+</script>
+</body>
+</html>
