@@ -22,22 +22,24 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg-light); color: var(--text-dark); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
 
-    /* CABECERA RESPONSIVE */
+    /* CABECERA RESPONSIVE PERFECTA */
     .header-sticky-wrapper {
         position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.95);
         backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 10px 16px;
     }
     .header { display: flex; flex-direction: column; gap: 10px; max-width: 1280px; margin: 0 auto; }
+    
+    /* FILA SUPERIOR EN MÓVIL: LOGO A LA IZQUIERDA, DEMO A LA DERECHA */
     .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     
-    .brand-badge { background: #ffffff; padding: 6px 14px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); flex-shrink: 0; }
-    .logo { font-size: 13.5px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
+    .brand-badge { background: #ffffff; padding: 6px 12px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); flex-shrink: 0; }
+    .logo { font-size: 13px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
     .logo span { color: var(--text-dark); }
     .online { font-size: 10px; color: var(--text-muted); font-weight: 600; }
 
-    /* BOTÓN PEDIR DEMO */
+    /* BOTÓN PEDIR DEMO VIVO */
     .btn-cta-header {
-        background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important; font-weight: 800; padding: 8px 16px; border-radius: 10px;
+        background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important; font-weight: 800; padding: 8px 15px; border-radius: 10px;
         text-decoration: none; font-size: 12px; box-shadow: 0 4px 14px var(--primary-glow); white-space: nowrap; transition: all 0.2s;
         animation: pulseDemoGlow 2.2s infinite ease-in-out; flex-shrink: 0;
     }
@@ -46,7 +48,7 @@
         50% { box-shadow: 0 0 18px rgba(0, 176, 101, 0.85); transform: scale(1.025); }
     }
 
-    /* BLOQUE NAVEGACIÓN */
+    /* FILA INFERIOR EN MÓVIL: BLOQUE DE FASES */
     .nav-bloques { 
         display: flex; gap: 6px; width: 100%; overflow-x: auto; padding: 2px 0; 
         -webkit-overflow-scrolling: touch;
@@ -229,12 +231,10 @@
         .nav-bloques { width: auto; padding: 0; display: flex; align-items: center; gap: 8px; }
         .nav-btn { flex: none; font-size: 12px; padding: 8px 16px; }
         
-        /* ALINEACIÓN PERFECTA DE LA DEMO A LA DERECHA EN PC */
         .btn-cta-header { margin-left: 12px; font-size: 13px; padding: 9px 18px; }
 
         .hero-container { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 64px 24px; gap: 40px; }
         
-        /* SLOGAN MÁS GRANDE Y POTENTE EN ESCRITORIO */
         .hero h1 { font-size: 48px; line-height: 1.15; letter-spacing: -1px; }
         .hero h1 span { text-shadow: 0 0 25px rgba(0, 176, 101, 0.45); }
         .subtitle-info { font-size: 17px; }
@@ -253,19 +253,20 @@
 <!-- NAVEGACIÓN PRINCIPAL -->
 <div class="header-sticky-wrapper">
     <div class="header">
+        <!-- FILA SUPERIOR EN MÓVIL: LOGO A LA IZQUIERDA Y PEDIR DEMO A LA DERECHA -->
         <div class="header-top-row">
             <div class="brand-badge">
                 <div class="logo">ALCALDE DIGITAL <span>ROI</span></div>
                 <div class="online">Gobernanza Inteligente</div>
             </div>
+            <a href="#formularioDemo" class="btn-cta-header">Pedir Demo</a>
         </div>
 
-        <!-- EN PC LAS FASES Y EL BOTÓN DEMO QUEDAN ALINEADOS A LA DERECHA SIN TOCAR EL LOGO -->
+        <!-- FILA INFERIOR EN MÓVIL: BOTONES DE FASES DE DESPLAZAMIENTO SUAVE -->
         <nav class="nav-bloques">
             <a href="#bloque1" id="nav-link-bloque1" class="nav-btn active">1. Plataforma</a>
             <a href="#bloque2" id="nav-link-bloque2" class="nav-btn">2. Ciclo IA</a>
             <a href="#bloque3" id="nav-link-bloque3" class="nav-btn">3. Fases</a>
-            <a href="#formularioDemo" class="btn-cta-header">Pedir Demo</a>
         </nav>
     </div>
 </div>
