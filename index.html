@@ -4,217 +4,229 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Alcalde Digital ROI | Gobernanza Inteligente</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
     :root {
-        --primary: #00c875;
-        --primary-glow: rgba(0, 200, 117, 0.55);
-        --bg-dark: #05070a;
-        --surface: rgba(15, 23, 42, 0.92);
-        --surface-card: rgba(30, 41, 59, 0.85);
-        --border: rgba(255, 255, 255, 0.15);
-        --text: #ffffff;
-        --muted: #a1a1aa;
+        --primary: #00b065;
+        --primary-glow: rgba(0, 176, 101, 0.25);
+        --bg-light: #fdfbf7; /* Tono beige/crema principal */
+        --bg-alt: #f4f0e8;   /* Beige de contraste suave */
+        --surface: #ffffff;
+        --surface-card: #ffffff;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-strong: rgba(0, 0, 0, 0.14);
+        --text-dark: #0f172a;
+        --text-muted: #64748b;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg-dark); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
+    body { background: var(--bg-light); color: var(--text-dark); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; }
 
-    /* NAVEGACIÓN FLOTANTE MOBILE-FIRST */
+    /* NAVEGACIÓN FLOTANTE ELEGANTE */
     .header-sticky-wrapper {
-        position: sticky; top: 0; z-index: 1000; background: rgba(5, 7, 10, 0.95);
-        backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 10px 16px;
+        position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.92);
+        backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 12px 16px;
     }
-    .header { display: flex; flex-direction: column; gap: 10px; max-width: 1280px; margin: 0 auto; }
+    .header { display: flex; flex-direction: column; gap: 12px; max-width: 1280px; margin: 0 auto; }
     .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     
-    .brand-badge { background: rgba(12, 17, 26, 0.95); padding: 6px 12px; border-radius: 12px; border: 1px solid var(--border); }
-    .logo { font-size: 13px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
-    .logo span { color: #ffffff; }
-    .online { font-size: 10px; color: var(--muted); font-weight: 600; }
+    .brand-badge { background: #ffffff; padding: 6px 14px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .logo { font-size: 14px; font-weight: 900; letter-spacing: 0.8px; color: var(--primary); }
+    .logo span { color: var(--text-dark); }
+    .online { font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
 
     .btn-cta-header {
-        background: var(--primary); color: #000 !important; font-weight: 800; padding: 8px 14px; border-radius: 10px;
-        text-decoration: none; font-size: 12px; box-shadow: 0 0 12px var(--primary-glow); white-space: nowrap;
+        background: var(--primary); color: #ffffff !important; font-weight: 800; padding: 10px 18px; border-radius: 10px;
+        text-decoration: none; font-size: 12.5px; box-shadow: 0 4px 14px var(--primary-glow); white-space: nowrap; transition: all 0.2s;
     }
+    .btn-cta-header:hover { transform: translateY(-1px); background: #009857; }
 
-    .nav-bloques { display: flex; gap: 6px; width: 100%; overflow-x: auto; padding-bottom: 2px; }
+    /* CONTENEDOR DE NAVEGACIÓN CORREGIDO SIN CORTES */
+    .nav-bloques { display: flex; gap: 8px; width: 100%; overflow-x: auto; padding: 2px 4px 6px 2px; }
     .nav-bloques::-webkit-scrollbar { display: none; }
     .nav-btn {
-        color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 16px; font-size: 11px; font-weight: 700;
-        background: rgba(255,255,255,0.05); border: 1px solid var(--border); white-space: nowrap; flex-shrink: 0;
+        color: var(--text-muted); text-decoration: none; padding: 8px 14px; border-radius: 20px; font-size: 11.5px; font-weight: 700;
+        background: #ffffff; border: 1px solid var(--border); white-space: nowrap; flex-shrink: 0; transition: all 0.2s;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
-    .nav-btn.active { background: var(--primary); color: #000 !important; border-color: var(--primary); font-weight: 800; }
+    .nav-btn.active, .nav-btn:hover { background: var(--primary); color: #ffffff !important; border-color: var(--primary); font-weight: 800; }
 
-    /* HERO SECTION ESTRUCTURADA */
+    /* HERO SECTION LUMINOSA */
     .hero-container {
-        position: relative; padding: 24px 16px 40px; display: flex; flex-direction: column; gap: 24px;
-        background: linear-gradient(180deg, rgba(5,7,10,0.8) 0%, rgba(5,7,10,0.98) 100%),
+        position: relative; padding: 32px 16px 48px; display: flex; flex-direction: column; gap: 28px;
+        background: linear-gradient(180deg, rgba(253, 251, 247, 0.85) 0%, rgba(253, 251, 247, 0.98) 100%),
                     url('ciudad.png') center/cover no-repeat;
     }
 
     .hero-text-side { width: 100%; }
     .tag-participacion {
-        display: inline-block; background: rgba(0, 200, 117, 0.18); color: var(--primary);
-        border: 1px solid var(--primary); padding: 4px 12px; border-radius: 20px;
-        font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+        display: inline-block; background: rgba(0, 176, 101, 0.1); color: var(--primary);
+        border: 1px solid rgba(0, 176, 101, 0.3); padding: 5px 14px; border-radius: 20px;
+        font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
     }
-    .hero h1 { font-size: 28px; font-weight: 900; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; }
-    .hero h1 span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
-    .subtitle-info { font-size: 14px; color: #e2e8f0; font-weight: 600; margin-bottom: 10px; }
-    .core-description { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+    .hero h1 { font-size: 30px; font-weight: 900; line-height: 1.2; margin-bottom: 14px; letter-spacing: -0.5px; color: var(--text-dark); }
+    .hero h1 span { color: var(--primary); }
+    .subtitle-info { font-size: 15px; color: #334155; font-weight: 600; margin-bottom: 12px; }
+    .core-description { font-size: 13.5px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.6; }
 
-    .pillars-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    /* PILARES EN LA MISMA LÍNEA Y MISMO TAMAÑO */
+    .pillars-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; width: 100%; }
     .pillar-pill {
-        background: rgba(15, 23, 42, 0.85); border: 1px solid var(--primary); padding: 5px 10px; border-radius: 16px;
-        font-size: 11px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 4px;
+        flex: 1; min-width: 100px; text-align: center; justify-content: center;
+        background: #ffffff; border: 1px solid var(--border-strong); padding: 8px 12px; border-radius: 12px;
+        font-size: 11.5px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03); white-space: nowrap;
     }
 
-    /* CHAT DE WHATSAPP MÓVIL */
+    /* CHAT DE WHATSAPP MÓVIL ESTILO CLARO */
     .avatar-chat-container {
-        background: rgba(15, 23, 42, 0.95); border: 1px solid var(--border);
-        border-radius: 20px; padding: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        display: flex; flex-direction: column; gap: 12px; width: 100%;
+        background: #ffffff; border: 1px solid var(--border-strong);
+        border-radius: 22px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        display: flex; flex-direction: column; gap: 14px; width: 100%;
     }
     .avatar-header-large { display: flex; align-items: center; gap: 12px; }
     .chat-avatar-xl {
-        width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--primary);
-        box-shadow: 0 0 15px var(--primary-glow); overflow: hidden; flex-shrink: 0;
+        width: 58px; height: 58px; border-radius: 50%; border: 2px solid var(--primary);
+        box-shadow: 0 0 12px var(--primary-glow); overflow: hidden; flex-shrink: 0;
     }
     .chat-avatar-xl video { width: 100%; height: 100%; object-fit: cover; }
-    .avatar-status-title { font-size: 15px; font-weight: 900; color: #fff; }
-    .avatar-status-sub { font-size: 11px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 4px; }
-    .status-dot { width: 7px; height: 7px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 6px var(--primary); }
+    .avatar-status-title { font-size: 15.5px; font-weight: 900; color: var(--text-dark); }
+    .avatar-status-sub { font-size: 11.5px; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; }
 
     .whatsapp-box {
-        background: rgba(7, 10, 15, 0.98); border-radius: 14px; padding: 12px; border: 1px solid var(--border);
+        background: #f8f6f0; border-radius: 16px; padding: 14px; border: 1px solid var(--border);
         display: flex; flex-direction: column; gap: 10px;
     }
     
     .chat-messages-scroll {
-        display: flex; flex-direction: column; gap: 8px; overflow-y: auto;
+        display: flex; flex-direction: column; gap: 10px; overflow-y: auto;
         height: 240px; max-height: 240px; padding-right: 4px;
     }
-    .chat-messages-scroll::-webkit-scrollbar { width: 3px; }
-    .chat-messages-scroll::-webkit-scrollbar-thumb { background: var(--primary); }
+    .chat-messages-scroll::-webkit-scrollbar { width: 4px; }
+    .chat-messages-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
     .chat-bubble {
-        padding: 8px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; max-width: 90%;
-        color: #ffffff !important; opacity: 0; transform: translateY(8px); animation: fadeInUp 0.3s forwards ease-out;
+        padding: 10px 14px; border-radius: 14px; font-size: 12.5px; line-height: 1.4; max-width: 90%;
+        opacity: 0; transform: translateY(8px); animation: fadeInUp 0.3s forwards ease-out;
     }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-    .chat-bubble.bot { background: #008f53; font-weight: 600; align-self: flex-start; border-bottom-left-radius: 2px; }
-    .chat-bubble.user { background: rgba(255, 255, 255, 0.15); align-self: flex-end; border-bottom-right-radius: 2px; border: 1px solid var(--border); }
+    .chat-bubble.bot { background: #ffffff; color: var(--text-dark); font-weight: 600; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .chat-bubble.user { background: var(--primary); color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 2px; }
 
     .chat-bubble-cta {
-        background: rgba(0, 200, 117, 0.18); border: 1px dashed var(--primary); color: #fff; padding: 8px;
-        border-radius: 8px; font-size: 11px; font-weight: 800; text-align: center; cursor: pointer;
+        background: #ffffff; border: 1px dashed var(--primary); color: var(--primary); padding: 10px;
+        border-radius: 10px; font-size: 11.5px; font-weight: 800; text-align: center; cursor: pointer; transition: all 0.2s;
     }
+    .chat-bubble-cta:hover { background: var(--primary); color: #ffffff; }
 
     /* CREDENCIALES */
-    .credentials-bar { background: rgba(15, 23, 42, 0.95); border-y: 1px solid var(--border); padding: 14px 10px; }
-    .credentials-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; text-align: center; }
-    .cred-item { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; }
-    .cred-item span { color: var(--primary); font-size: 14px; }
+    .credentials-bar { background: #ffffff; border-y: 1px solid var(--border); padding: 18px 10px; }
+    .credentials-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: center; }
+    .cred-item { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 10.5px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
+    .cred-item span { color: var(--primary); font-size: 15px; }
 
-    /* SECCIONES Y BLOQUES MOBILE-FIRST */
-    .section-container { padding: 36px 16px; }
-    .section-title { text-align: center; margin-bottom: 24px; }
-    .section-title h2 { font-size: 22px; font-weight: 900; }
+    /* SECCIONES Y BLOQUES */
+    .section-container { padding: 48px 16px; }
+    .section-title { text-align: center; margin-bottom: 28px; }
+    .section-title h2 { font-size: 24px; font-weight: 900; color: var(--text-dark); }
     .section-title h2 span { color: var(--primary); }
-    .section-title p { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+    .section-title p { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
 
     .voting-widget-box {
-        background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 12px;
-        text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 20px; padding: 24px 16px;
+        text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
     }
-    .faces-interactive-row { display: flex; justify-content: space-around; gap: 4px; margin: 16px 0; }
+    .faces-interactive-row { display: flex; justify-content: space-around; gap: 4px; margin: 18px 0; }
     .face-vote-btn {
-        font-size: 32px; cursor: pointer; transition: transform 0.2s;
+        font-size: 34px; cursor: pointer; transition: transform 0.2s;
         filter: grayscale(0.4); display: flex; flex-direction: column; align-items: center;
     }
-    .face-vote-btn.selected { transform: scale(1.2) translateY(-4px); filter: grayscale(0) drop-shadow(0 0 8px var(--primary)); }
-    .face-lbl { font-size: 9px; font-weight: 800; color: var(--muted); margin-top: 4px; }
+    .face-vote-btn.selected { transform: scale(1.25) translateY(-4px); filter: grayscale(0) drop-shadow(0 4px 10px var(--primary-glow)); }
+    .face-lbl { font-size: 9.5px; font-weight: 800; color: var(--text-muted); margin-top: 4px; }
 
     /* BLOQUE CICLO CON FONDO CIUDAD2.PNG */
     .bg-city-section {
-        background: linear-gradient(180deg, rgba(5,7,10,0.88) 0%, rgba(5,7,10,0.96) 100%),
+        background: linear-gradient(180deg, rgba(248, 246, 240, 0.9) 0%, rgba(248, 246, 240, 0.98) 100%),
                     url('ciudad2.png') center/cover no-repeat;
-        padding: 36px 16px; border-y: 1px solid var(--border);
+        padding: 48px 16px; border-y: 1px solid var(--border);
     }
 
-    .cycle-container { display: flex; flex-direction: column; gap: 16px; }
+    .cycle-container { display: flex; flex-direction: column; gap: 18px; }
     .cycle-card {
-        background: rgba(15, 23, 42, 0.94); border: 1px solid var(--border); border-radius: 16px; padding: 20px;
-        position: relative; text-align: left;
+        background: #ffffff; border: 1px solid var(--border-strong); border-radius: 18px; padding: 24px 20px;
+        position: relative; text-align: left; box-shadow: 0 8px 24px rgba(0,0,0,0.03);
     }
     .cycle-badge {
-        position: absolute; top: -10px; left: 16px; background: var(--primary); color: #000;
-        font-weight: 900; font-size: 9.5px; padding: 2px 10px; border-radius: 12px; text-transform: uppercase;
+        position: absolute; top: -11px; left: 18px; background: var(--primary); color: #ffffff;
+        font-weight: 900; font-size: 9.5px; padding: 3px 12px; border-radius: 12px; text-transform: uppercase;
     }
-    .cycle-icon { font-size: 28px; margin-bottom: 8px; margin-top: 4px; }
+    .cycle-icon { font-size: 30px; margin-bottom: 8px; margin-top: 4px; }
 
-    /* FASES Y FORMULARIO CON AVATAR MÁS GRANDE */
-    .expertise-flow-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+    /* FASES Y FORMULARIO */
+    .expertise-flow-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
     .expertise-step-box {
-        background: var(--surface-card); border: 1px solid var(--border); border-radius: 14px; padding: 16px;
-        display: flex; gap: 12px; align-items: flex-start;
+        background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 18px;
+        display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
     .expertise-step-num {
-        background: rgba(0, 200, 117, 0.15); color: var(--primary); border: 1px solid var(--primary);
-        font-weight: 900; font-size: 12px; width: 30px; height: 30px; border-radius: 8px;
+        background: rgba(0, 176, 101, 0.1); color: var(--primary); border: 1px solid var(--primary);
+        font-weight: 900; font-size: 13px; width: 32px; height: 32px; border-radius: 10px;
         display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .expertise-step-content h4 { font-size: 13.5px; color: #fff; font-weight: 800; }
-    .expertise-step-content p { font-size: 11.5px; color: var(--muted); }
+    .expertise-step-content h4 { font-size: 14px; color: var(--text-dark); font-weight: 800; }
+    .expertise-step-content p { font-size: 12px; color: var(--text-muted); }
 
+    /* FORMULARIO DE DEMO */
     .demo-wrapper-grid {
-        display: flex; flex-direction: column; gap: 20px;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(7, 9, 14, 0.98));
-        border: 1px solid var(--primary); border-radius: 20px; padding: 20px; box-shadow: 0 0 25px var(--primary-glow);
+        display: flex; flex-direction: column; gap: 24px;
+        background: #ffffff; border: 1px solid var(--border-strong);
+        border-radius: 22px; padding: 24px 18px; box-shadow: 0 15px 35px rgba(0,0,0,0.05);
     }
 
-    .form-group { margin-bottom: 12px; text-align: left; }
-    .form-group label { display: block; font-size: 10px; font-weight: 900; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+    .form-group { margin-bottom: 14px; text-align: left; }
+    .form-group label { display: block; font-size: 10.5px; font-weight: 900; color: var(--text-dark); text-transform: uppercase; margin-bottom: 5px; }
     .form-group input, .form-group textarea {
-        width: 100%; background: #000; border: 1px solid var(--border); padding: 10px; border-radius: 10px;
-        color: #fff; font-size: 12.5px; outline: none; font-family: inherit;
+        width: 100%; background: #fdfbf7; border: 1px solid var(--border-strong); padding: 12px; border-radius: 10px;
+        color: var(--text-dark); font-size: 13px; outline: none; font-family: inherit; transition: border-color 0.2s;
     }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #ffffff; }
 
     .btn-submit-demo-glow {
-        width: 100%; background: linear-gradient(135deg, #00c875, #009657); color: #ffffff !important;
-        font-size: 14px; font-weight: 900; padding: 14px; border-radius: 10px; border: none; cursor: pointer;
-        box-shadow: 0 0 20px var(--primary-glow);
+        width: 100%; background: linear-gradient(135deg, #00b065, #008a4f); color: #ffffff !important;
+        font-size: 15px; font-weight: 900; padding: 16px; border-radius: 12px; border: none; cursor: pointer;
+        box-shadow: 0 6px 20px var(--primary-glow); transition: all 0.2s;
     }
+    .btn-submit-demo-glow:hover { transform: translateY(-1px); }
 
-    /* ENCUADRE DE CARA DEL AVATAR CON ZOOM MÁXIMO (MÓVIL) */
+    /* AVATAR DE CARA GRANDE ENFOCADO */
     .avatar-png-side {
-        width: 100%; height: 260px; position: relative; display: flex;
-        justify-content: center; align-items: center; overflow: hidden; border-radius: 16px;
-        background: radial-gradient(circle, rgba(0, 200, 117, 0.12) 0%, transparent 70%);
+        width: 100%; height: 280px; position: relative; display: flex;
+        justify-content: center; align-items: center; overflow: hidden; border-radius: 18px;
+        background: radial-gradient(circle, rgba(0, 176, 101, 0.08) 0%, transparent 75%);
     }
     .avatar-png-side img {
         width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
         transform: scale(1.45);
         -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%);
         mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%);
-        filter: drop-shadow(0 0 20px var(--primary-glow));
+        filter: drop-shadow(0 8px 18px rgba(0,0,0,0.1));
     }
 
-    footer { border-top: 1px solid var(--border); padding: 20px 16px; text-align: center; font-size: 11px; color: var(--muted); }
+    footer { border-top: 1px solid var(--border); padding: 24px 16px; text-align: center; font-size: 11.5px; color: var(--text-muted); background: #ffffff; }
 
-    /* ESCRITORIO Y PANTALLAS GRANDES */
+    /* ESCRITORIO Y PANTALLAS ANCHAS */
     @media (min-width: 850px) {
         .header { flex-direction: row; justify-content: space-between; align-items: center; }
-        .nav-bloques { width: auto; }
-        .hero-container { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 60px 24px; gap: 40px; }
-        .hero h1 { font-size: 40px; }
+        .nav-bloques { width: auto; padding-bottom: 0; }
+        .hero-container { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 64px 24px; gap: 40px; }
+        .hero h1 { font-size: 42px; }
         .cycle-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .expertise-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        .demo-wrapper-grid { display: grid; grid-template-columns: 1fr 320px; padding: 32px; gap: 30px; }
-        .avatar-png-side { height: 380px; }
+        .expertise-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .demo-wrapper-grid { display: grid; grid-template-columns: 320px 1fr; padding: 36px; gap: 32px; }
+        .avatar-png-side { height: 400px; }
         .avatar-png-side img { transform: scale(1.35); object-position: center 20%; }
         .credentials-container { display: flex; justify-content: space-around; }
     }
@@ -230,7 +242,8 @@
                 <div class="logo">ALCALDE DIGITAL <span>ROI</span></div>
                 <div class="online">Gobernanza Inteligente</div>
             </div>
-            <a href="#bloque3" class="btn-cta-header">Pedir Demo</a>
+            <!-- APUNTA DIRECTAMENTE AL FORMULARIO DE DEMO -->
+            <a href="#formularioDemo" class="btn-cta-header">Pedir Demo</a>
         </div>
 
         <nav class="nav-bloques">
@@ -249,6 +262,7 @@
         <p class="subtitle-info">Conoce en tiempo real todo lo que piensan los habitantes de tu municipio.</p>
         <p class="core-description">Plataforma integral que une la captación física y digital con un motor IA que prioriza e impulsa la resolución de incidencias en tu municipio.</p>
         
+        <!-- PILARES EN LA MISMA LÍNEA Y MISMO TAMAÑO -->
         <div class="pillars-row">
             <div class="pillar-pill"><span>📍</span> Proximidad</div>
             <div class="pillar-pill"><span>🧠</span> Inteligencia</div>
@@ -270,7 +284,7 @@
 
         <div class="whatsapp-box">
             <div class="chat-messages-scroll" id="chatScroll"></div>
-            <div class="chat-bubble-cta" onclick="document.getElementById('bloque3').scrollIntoView();">
+            <div class="chat-bubble-cta" onclick="document.getElementById('formularioDemo').scrollIntoView();">
                 🚀 Clic para solicitar demostración
             </div>
         </div>
@@ -295,8 +309,8 @@
     </div>
 
     <div class="voting-widget-box">
-        <h3 style="font-size:15px; font-weight:800; color:#fff;">¿Cómo valoran los vecinos la gestión?</h3>
-        <p style="font-size:11.5px; color:var(--muted); margin-top:2px;">Haz clic para registrar un voto de prueba:</p>
+        <h3 style="font-size:16px; font-weight:800; color:var(--text-dark);">¿Cómo valoran los vecinos la gestión?</h3>
+        <p style="font-size:12px; color:var(--text-muted); margin-top:2px;">Haz clic para registrar un voto de prueba:</p>
         
         <div class="faces-interactive-row">
             <div class="face-vote-btn" onclick="voteEmoji('😡', 'Muy descontento')">
@@ -320,7 +334,7 @@
                 <span class="face-lbl">Satisfecho</span>
             </div>
         </div>
-        <div id="voteFeedback" style="font-size:11.5px; font-weight:800; color:var(--primary); min-height:18px;">
+        <div id="voteFeedback" style="font-size:12px; font-weight:800; color:var(--primary); min-height:18px;">
             Valoración seleccionada: 😄 Muy satisfecho
         </div>
     </div>
@@ -337,22 +351,22 @@
         <div class="cycle-card">
             <div class="cycle-badge">FASE 1: CAPTACIÓN</div>
             <div class="cycle-icon">🗳️</div>
-            <h3 style="font-size:15px; font-weight:800; color:#fff; margin-bottom:4px;">Urna Digital y QR</h3>
-            <p style="font-size:11.5px; color:var(--muted);">Captación mediante tótems e interacción móvil instantánea.</p>
+            <h3 style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:4px;">Urna Digital y QR</h3>
+            <p style="font-size:12px; color:var(--text-muted);">Captación mediante tótems e interacción móvil instantánea.</p>
         </div>
 
         <div class="cycle-card">
             <div class="cycle-badge">FASE 2: IA Y MAPA</div>
             <div class="cycle-icon">🧠</div>
-            <h3 style="font-size:15px; font-weight:800; color:#fff; margin-bottom:4px;">Motor Inteligente</h3>
-            <p style="font-size:11.5px; color:var(--muted);">Prioriza, categoriza y propone actuaciones técnicas automáticas.</p>
+            <h3 style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:4px;">Motor Inteligente</h3>
+            <p style="font-size:12px; color:var(--text-muted);">Prioriza, categoriza y propone actuaciones técnicas automáticas.</p>
         </div>
 
         <div class="cycle-card">
             <div class="cycle-badge">FASE 3: ACCIÓN</div>
             <div class="cycle-icon">📊</div>
-            <h3 style="font-size:15px; font-weight:800; color:#fff; margin-bottom:4px;">Panel Técnico</h3>
-            <p style="font-size:11.5px; color:var(--muted);">Gestión ágil para brigadas y respuesta pública transparente.</p>
+            <h3 style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:4px;">Panel Técnico</h3>
+            <p style="font-size:12px; color:var(--text-muted);">Gestión ágil para brigadas y respuesta pública transparente.</p>
         </div>
     </div>
 </section>
@@ -395,16 +409,16 @@
         </div>
     </div>
 
-    <!-- DEMO CON AVATAR DE CARA GRANDE -->
-    <div class="demo-wrapper-grid">
+    <!-- TARJETA DEL FORMULARIO CON ID #formularioDemo PARA EL SCROLL -->
+    <div class="demo-wrapper-grid" id="formularioDemo">
         <!-- AVATAR ENFOCADO EN CARA -->
         <div class="avatar-png-side">
             <img src="avatar.png" alt="Avatar Alcalde Digital" onerror="this.style.display='none';">
         </div>
 
         <div>
-            <h3 style="font-size:18px; font-weight:900; color:#fff; margin-bottom:4px;">Solicitar Demo Municipal</h3>
-            <p style="font-size:11.5px; color:var(--muted); margin-bottom:16px;">Completa los datos para agendar una sesión:</p>
+            <h3 style="font-size:19px; font-weight:900; color:var(--text-dark); margin-bottom:4px;">Solicitar Demo Municipal</h3>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:18px;">Completa los datos para agendar una sesión:</p>
 
             <form onsubmit="sendDemoFormspree(event)">
                 <div class="form-group">
