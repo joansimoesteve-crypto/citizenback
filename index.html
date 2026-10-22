@@ -29,7 +29,7 @@
     }
     .header { display: flex; flex-direction: column; gap: 10px; max-width: 1280px; margin: 0 auto; }
     
-    /* FILA SUPERIOR EN MÓVIL: LOGO A LA IZQUIERDA, DEMO A LA DERECHA */
+    /* FILA SUPERIOR EN MÓVIL */
     .header-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     
     .brand-badge { background: #ffffff; padding: 6px 12px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); flex-shrink: 0; }
@@ -48,7 +48,7 @@
         50% { box-shadow: 0 0 18px rgba(0, 176, 101, 0.85); transform: scale(1.025); }
     }
 
-    /* FILA INFERIOR EN MÓVIL: BLOQUE DE FASES */
+    /* FILA INFERIOR EN MÓVIL */
     .nav-bloques { 
         display: flex; gap: 6px; width: 100%; overflow-x: auto; padding: 2px 0; 
         -webkit-overflow-scrolling: touch;
@@ -72,11 +72,12 @@
     .tag-participacion {
         display: inline-block; background: rgba(0, 176, 101, 0.1); color: var(--primary);
         border: 1px solid rgba(0, 176, 101, 0.3); padding: 5px 14px; border-radius: 20px;
-        font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+        font-size: 10.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
     }
 
+    /* SLOGAN PRINCIPAL CON ESPACIADO AMPLIADO AL SECUNDARIO */
     .hero h1 { 
-        font-size: 30px; font-weight: 900; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-dark);
+        font-size: 30px; font-weight: 900; line-height: 1.25; margin-bottom: 22px; letter-spacing: -0.5px; color: var(--text-dark);
         animation: slideDownAura 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .hero h1 span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
@@ -85,7 +86,8 @@
         100% { opacity: 1; transform: translateY(0); }
     }
 
-    .subtitle-info { font-size: 15px; color: #334155; font-weight: 700; margin-bottom: 10px; }
+    /* SUBTÍTULO CON MARGEN SEPARADO Y MÁS AIRE */
+    .subtitle-info { font-size: 15px; color: #334155; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
     .core-description { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
 
     .pillars-row { display: flex; gap: 8px; margin-bottom: 10px; width: 100%; }
@@ -235,9 +237,9 @@
 
         .hero-container { display: grid; grid-template-columns: 1.1fr 0.9fr; padding: 64px 24px; gap: 40px; }
         
-        .hero h1 { font-size: 48px; line-height: 1.15; letter-spacing: -1px; }
+        .hero h1 { font-size: 48px; line-height: 1.2; letter-spacing: -1px; margin-bottom: 26px; }
         .hero h1 span { text-shadow: 0 0 25px rgba(0, 176, 101, 0.45); }
-        .subtitle-info { font-size: 17px; }
+        .subtitle-info { font-size: 17px; margin-bottom: 16px; }
         .core-description { font-size: 14.5px; }
 
         .cycle-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -253,7 +255,7 @@
 <!-- NAVEGACIÓN PRINCIPAL -->
 <div class="header-sticky-wrapper">
     <div class="header">
-        <!-- FILA SUPERIOR EN MÓVIL: LOGO A LA IZQUIERDA Y PEDIR DEMO A LA DERECHA -->
+        <!-- FILA SUPERIOR EN MÓVIL -->
         <div class="header-top-row">
             <div class="brand-badge">
                 <div class="logo">ALCALDE DIGITAL <span>ROI</span></div>
@@ -262,7 +264,7 @@
             <a href="#formularioDemo" class="btn-cta-header">Pedir Demo</a>
         </div>
 
-        <!-- FILA INFERIOR EN MÓVIL: BOTONES DE FASES DE DESPLAZAMIENTO SUAVE -->
+        <!-- FILA INFERIOR EN MÓVIL -->
         <nav class="nav-bloques">
             <a href="#bloque1" id="nav-link-bloque1" class="nav-btn active">1. Plataforma</a>
             <a href="#bloque2" id="nav-link-bloque2" class="nav-btn">2. Ciclo IA</a>
@@ -415,6 +417,7 @@
         </div>
     </div>
 
+    <!-- FORMULARIO CON CAMPO TELÉFONO INCLUIDO -->
     <div class="demo-wrapper-grid" id="formularioDemo">
         <div class="avatar-png-side">
             <img src="avatar.png" alt="Avatar Alcalde Digital" onerror="this.style.display='none';">
@@ -440,6 +443,11 @@
                 <div class="form-group">
                     <label>Correo Oficial</label>
                     <input type="email" id="demoEmail" placeholder="ejemplo@municipio.es" required>
+                </div>
+                <!-- NUEVO CAMPO DE TELÉFONO -->
+                <div class="form-group">
+                    <label>Teléfono de Contacto</label>
+                    <input type="tel" id="demoPhone" placeholder="Ej. 612 345 678" required>
                 </div>
                 <div class="form-group">
                     <label>Observaciones</label>
@@ -530,6 +538,7 @@ async function sendDemoFormspree(e) {
         cargo: document.getElementById('demoRole').value,
         ayuntamiento: document.getElementById('demoTown').value,
         email: document.getElementById('demoEmail').value,
+        telefono: document.getElementById('demoPhone').value, // RECOGIDA DEL TELÉFONO
         observaciones: document.getElementById('demoNotes').value
     };
 
